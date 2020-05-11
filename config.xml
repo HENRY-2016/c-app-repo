@@ -36,6 +36,6 @@
         <access origin="*" />
     <!-- =========================================== -->
 
-    <icon src="static/imgs/icone.png" />
+    <icon src="static/img/icone.png" />
     <plugin name="cordova-plugin-whitelist" />
 </widget>
