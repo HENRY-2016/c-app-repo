@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>C-Prog | Home</title>
+<meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1">
+<!-- <script src="js/main.js"></script> -->
+<link rel="stylesheet" type="text/css" href="static/css/w3.css">
+<link rel="stylesheet" type="text/css" href="static/css/main.css">
+
+</head>
+<body id="main_body" ><br>
+	<div id="main_div_content">
+		<ul>
+			<li><a href="index.html"> Home</a></li>
+			<li><a href="functions.html"> Functions</a></li>
+			<li><a href="source.html"> Source</a></li>
+		</ul>
+		<br>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">stdio.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					*
+ * File Operations
+ */
+_CRTIMP FILE* __cdecl f open (const char*, const char*);
+_CRTIMP FILE* __cdecl	f reopen (const char*, const char*, FILE*);
+_CRTIMP int __cdecl	f flush (FILE*);
+_CRTIMP int __cdecl	f close (FILE*);
+/* MS puts remove & rename (but not wide versions) in io.h  also */
+_CRTIMP int __cdecl	remove (const char*);
+_CRTIMP int __cdecl	rename (const char*, const char*);
+_CRTIMP FILE* __cdecl	tmpfile (void);
+_CRTIMP char* __cdecl	tmpnam (char*);
+
+#ifndef __STRICT_ANSI__
+_CRTIMP char* __cdecl	_tempnam (const char*, const char*);
+_CRTIMP int  __cdecl    _rmtmp(void);
+
+#ifndef	NO_OLDNAMES
+_CRTIMP char* __cdecl	tempnam (const char*, const char*);
+_CRTIMP int __cdecl     rmtmp(void);
+#endif
+#endif /* __STRICT_ANSI__ */
+
+_CRTIMP int __cdecl	setvbuf (FILE*, char*, int, size_t);
+
+_CRTIMP void __cdecl	setbuf (FILE*, char*);
+
+/*
+ * Formatted Output
+ */
+
+_CRTIMP int __cdecl	f printf (FILE*, const char*, ...);
+_CRTIMP int __cdecl	printf (const char*, ...);
+_CRTIMP int __cdecl	sprintf (char*, const char*, ...);
+_CRTIMP int __cdecl	_snprintf (char*, size_t, const char*, ...);
+_CRTIMP int __cdecl	vfprintf (FILE*, const char*, __VALIST);
+_CRTIMP int __cdecl	vprintf (const char*, __VALIST);
+_CRTIMP int __cdecl	vsprintf (char*, const char*, __VALIST);
+_CRTIMP int __cdecl	_vsnprintf (char*, size_t, const char*, __VALIST);
+
+#ifndef __NO_ISOCEXT  /* externs in libmingwex.a */
+int __cdecl snprintf(char* s, size_t n, const char*  format, ...);
+__CRT_INLINE int __cdecl
+vsnprintf (char* s, size_t n, const char* format, __VALIST arg)
+  { return _vsnprintf ( s, n, format, arg); }
+int __cdecl vscanf (const char * __restrict__, __VALIST);
+int __cdecl vf scanf (FILE * __restrict__, const char * __restrict__,
+		     __VALIST);
+int __cdecl vsscanf (const char * __restrict__,
+		     const char * __restrict__, __VALIST);
+#endif
+
+/*
+ * Formatted Input
+ */
+
+_CRTIMP int __cdecl	f scanf (FILE*, const char*, ...);
+_CRTIMP int __cdecl	scanf (const char*, ...);
+_CRTIMP int __cdecl	sscanf (const char*, const char*, ...);
+/*
+ * Character Input and Output Functions
+ */
+
+_CRTIMP int __cdecl	f getc (FILE*);
+_CRTIMP char* __cdecl	f gets (char*, int, FILE*);
+_CRTIMP int __cdecl	f putc (int, FILE*);
+_CRTIMP int __cdecl	f puts (const char*, FILE*);
+_CRTIMP char* __cdecl	gets (char*);
+_CRTIMP int __cdecl	puts (const char*);
+_CRTIMP int __cdecl	ungetc (int, FILE*);
+
+/* Traditionally, getc and putc are defined as macros. but the
+   standard doesn't say that they must be macros.
+   We use inline functions here to allow the fast versions
+   to be used in C++ with namespace qualification, eg., ::getc.
+
+   _filbuf and _flsbuf  are not thread-safe. */
+_CRTIMP int __cdecl	_filbuf (FILE*);
+_CRTIMP int __cdecl	_flsbuf (int, FILE*);
+
+#if !defined _MT
+
+__CRT_INLINE int __cdecl getc (FILE* __F)
+{
+  return (--__F->_cnt >= 0)
+    ?  (int) (unsigned char) *__F->_ptr++
+    : _filbuf (__F);
+}
+
+__CRT_INLINE int __cdecl putc (int __c, FILE* __F)
+{
+  return (--__F->_cnt >= 0)
+    ?  (int) (unsigned char) (*__F->_ptr++ = (char)__c)
+    :  _flsbuf (__c, __F);
+}
+
+__CRT_INLINE int __cdecl getchar (void)
+{
+  return (--stdin->_cnt >= 0)
+    ?  (int) (unsigned char) *stdin->_ptr++
+    : _filbuf (stdin);
+}
+
+__CRT_INLINE int __cdecl putchar(int __c)
+{
+  return (--stdout->_cnt >= 0)
+    ?  (int) (unsigned char) (*stdout->_ptr++ = (char)__c)
+    :  _flsbuf (__c, stdout);}
+
+#else  /* Use library functions.  */
+
+_CRTIMP int __cdecl	getc (FILE*);
+_CRTIMP int __cdecl	putc (int, FILE*);
+_CRTIMP int __cdecl	getchar (void);
+_CRTIMP int __cdecl	putchar (int);
+
+#endif
+
+/*
+ * Direct Input and Output Functions
+ */
+
+_CRTIMP size_t __cdecl	f read (void*, size_t, size_t, FILE*);
+_CRTIMP size_t __cdecl	f write (const void*, size_t, size_t, FILE*);
+
+/*
+ * File Positioning Functions
+ */
+
+_CRTIMP int __cdecl	f seek (FILE*, long, int);
+_CRTIMP long __cdecl	f tell (FILE*);
+_CRTIMP void __cdecl	rewind (FILE*);
+
+#ifdef __USE_MINGW_FSEEK  /* These are in libmingwex.a */
+/*
+ * Workaround for limitations on win9x where a file contents are
+ * not zero'd out if you seek past the end and then write.
+ */
+
+int __cdecl __mingw_f seek (FILE *, long, int);
+int __cdecl __mingw_f write (const void*, size_t, size_t, FILE*);
+#define f seek(fp, offset, whence)  __mingw_f seek(fp, offset, whence)
+#define f write(buffer, size, count, fp)  __mingw_f write(buffer, size, count, fp)
+#endif /* __USE_MINGW_FSEEK */
+
+/*
+ * An opaque data type used for storing file positions... The contents of
+ * this type are unknown, but we (the compiler) need to know the size
+ * because the programmer using f getpos and f setpos will be setting aside
+ * storage for f pos_t structres. Actually I tested using a byte array and
+ * it is fairly evident that the fpos_t type is a long (in CRTDLL.DLL).
+ * Perhaps an unsigned long? TODO? It's definitely a 64-bit number in
+ * MSVCRT however, and for now `long long' will do.
+ */
+#ifdef __MSVCRT__
+typedef long long f pos_t;
+#else
+typedef long	f pos_t;
+#endif
+
+_CRTIMP int __cdecl	f getpos	(FILE*, fpos_t*);
+_CRTIMP int __cdecl	f setpos (FILE*, const fpos_t*);
+
+/*
+ * Error Functions
+ */
+
+_CRTIMP int __cdecl	f eof (FILE*);
+_CRTIMP int __cdecl	f error (FILE*);
+
+#ifdef __cplusplus
+inline int __cdecl f eof (FILE* __F)
+  { return __F->_flag & _IOEOF; }
+inline int __cdecl f error (FILE* __F)
+  { return __F->_flag & _IOERR; }
+#else
+#define f eof(__F)     ((__F)->_flag & _IOEOF)
+#define f error(__F)   ((__F)->_flag & _IOERR)
+#endif
+
+_CRTIMP void __cdecl	clearerr (FILE*);
+_CRTIMP void __cdecl	perror (const char*);
+
+#ifndef __STRICT_ANSI__
+/*
+ * Pipes
+ */
+_CRTIMP FILE* __cdecl	_popen (const char*, const char*);
+_CRTIMP int __cdecl	_pclose (FILE*);
+
+#ifndef NO_OLDNAMES
+_CRTIMP FILE* __cdecl	popen (const char*, const char*);
+_CRTIMP int __cdecl	pclose (FILE*);
+#endif
+
+/*
+ * Other Non ANSI functions
+ */
+_CRTIMP int __cdecl	_flushall (void);
+_CRTIMP int __cdecl	_f getchar (void);
+_CRTIMP int __cdecl	_f putchar (int);
+_CRTIMP FILE* __cdecl	_f dopen (int, const char*);
+_CRTIMP int __cdecl	_fileno (FILE*);
+_CRTIMP int __cdecl	_f closeall(void);
+_CRTIMP FILE* __cdecl	_f sopen(const char*, const char*, int);
+#ifdef __MSVCRT__
+_CRTIMP int __cdecl	_getmaxstdio(void);
+_CRTIMP int __cdecl	_setmaxstdio(int);
+#endif
+
+#ifndef _NO_OLDNAMES
+_CRTIMP int __cdecl	f getchar (void);
+_CRTIMP int __cdecl	f putchar (int);
+_CRTIMP FILE* __cdecl	f dopen (int, const char*);
+_CRTIMP int __cdecl	fileno (FILE*);
+#endif	/* Not _NO_OLDNAMES */
+
+#define _fileno(__F) ((__F)->_file)
+#ifndef _NO_OLDNAMES
+#define fileno(__F) ((__F)->_file)
+#endif
+
+#if defined (__MSVCRT__) && !defined (__NO_MINGW_LFS)
+#include <sys/types.h>
+__CRT_INLINE FILE* __cdecl fopen64 (const char* filename, const char* mode)
+{
+  return f open (filename, mode);
+}
+
+int __cdecl f seeko64 (FILE*, off64_t, int);
+
+#ifdef __USE_MINGW_FSEEK
+int __cdecl __mingw_f seeko64 (FILE *, off64_t, int);
+#define f seeko64(fp, offset, whence)  __mingw_fseeko64(fp, offset, whence)
+#endif
+
+__CRT_INLINE off64_t __cdecl f tello64 (FILE * stream)
+{
+  f pos_t pos;
+  if (f getpos(stream, &pos))
+    return  -1LL;
+  else
+   return ((off64_t) pos);
+}
+#endif /* __NO_MINGW_LFS */
+
+#endif	/* Not __STRICT_ANSI__ */
+
+/* Wide  versions */
+
+#ifndef _WSTDIO_DEFINED
+/*  also in wchar.h - keep in sync */
+_CRTIMP int __cdecl	f wprintf (FILE*, const wchar_t*, ...);
+_CRTIMP int __cdecl	wprintf (const wchar_t*, ...);
+_CRTIMP int __cdecl	swprintf (wchar_t*, const wchar_t*, ...);
+_CRTIMP int __cdecl	_snwprintf (wchar_t*, size_t, const wchar_t*, ...);
+_CRTIMP int __cdecl	vf wprintf (FILE*, const wchar_t*, __VALIST);
+_CRTIMP int __cdecl	vwprintf (const wchar_t*, __VALIST);
+_CRTIMP int __cdecl	vswprintf (wchar_t*, const wchar_t*, __VALIST);
+_CRTIMP int __cdecl	_vsnwprintf (wchar_t*, size_t, const wchar_t*, __VALIST);
+_CRTIMP int __cdecl	f wscanf (FILE*, const wchar_t*, ...);
+_CRTIMP int __cdecl	wscanf (const wchar_t*, ...);
+_CRTIMP int __cdecl	swscanf (const wchar_t*, const wchar_t*, ...);
+_CRTIMP wint_t __cdecl	f getwc (FILE*);
+_CRTIMP wint_t __cdecl	f putwc (wchar_t, FILE*);
+_CRTIMP wint_t __cdecl	ungetwc (wchar_t, FILE*);
+
+#ifdef __MSVCRT__
+_CRTIMP wchar_t* __cdecl f getws (wchar_t*, int, FILE*);
+_CRTIMP int __cdecl	f putws (const wchar_t*, FILE*);
+_CRTIMP wint_t __cdecl	getwc (FILE*);
+_CRTIMP wint_t __cdecl	getwchar (void);
+_CRTIMP wchar_t* __cdecl _getws (wchar_t*);
+_CRTIMP wint_t __cdecl	putwc (wint_t, FILE*);
+_CRTIMP int __cdecl	_putws (const wchar_t*);
+_CRTIMP wint_t __cdecl	putwchar (wint_t);
+_CRTIMP FILE* __cdecl	_wf dopen(int, wchar_t *);
+_CRTIMP FILE* __cdecl	_wf open (const wchar_t*, const wchar_t*);
+_CRTIMP FILE* __cdecl	_wf reopen (const wchar_t*, const wchar_t*, FILE*);
+_CRTIMP FILE* __cdecl	_wf sopen (const wchar_t*, const wchar_t*, int);
+_CRTIMP wchar_t* __cdecl _wtmpnam (wchar_t*);
+_CRTIMP wchar_t* __cdecl _wtempnam (const wchar_t*, const wchar_t*);
+_CRTIMP int __cdecl	_wrename (const wchar_t*, const wchar_t*);
+_CRTIMP int __cdecl	_wr emove (const wchar_t*);
+_CRTIMP void __cdecl	_wp error (const wchar_t*);
+_CRTIMP FILE* __cdecl	_wp open (const wchar_t*, const wchar_t*);
+#endif	/* __MSVCRT__ */
+
+#ifndef __NO_ISOCEXT  /* externs in libmingwex.a */
+int __cdecl snwprintf (wchar_t* s, size_t n, const wchar_t*  format, ...);
+__CRT_INLINE int __cdecl
+vsnwprintf (wchar_t* s, size_t n, const wchar_t* format, __VALIST arg)
+  { return _vsnwprintf ( s, n, format, arg);}
+int __cdecl vwscanf (const wchar_t * __restrict__, __VALIST);
+int __cdecl vf wscanf (FILE * __restrict__,
+		       const wchar_t * __restrict__, __VALIST);
+int __cdecl vswscanf (const wchar_t * __restrict__,
+		       const wchar_t * __restrict__, __VALIST);
+#endif
+
+#define _WSTDIO_DEFINED
+#endif /* _WSTDIO_DEFINED */
+
+#ifndef __STRICT_ANSI__
+#ifdef __MSVCRT__
+#ifndef NO_OLDNAMES
+_CRTIMP FILE* __cdecl	wp open (const wchar_t*, const wchar_t*);
+#endif /* not NO_OLDNAMES */
+#endif /* MSVCRT runtime */
+
+/*
+ * Other Non ANSI wide functions
+ */
+_CRTIMP wint_t __cdecl	_f getwchar (void);
+_CRTIMP wint_t __cdecl	_f putwchar (wint_t);
+_CRTIMP int __cdecl	_getw (FILE*);
+_CRTIMP int __cdecl	_putw (int, FILE*);
+
+#ifndef _NO_OLDNAMES
+_CRTIMP wint_t __cdecl	f getwchar (void);
+_CRTIMP wint_t __cdecl	f putwchar (wint_t);
+_CRTIMP int __cdecl	getw (FILE*);
+_CRTIMP int __cdecl	putw (int, FILE*);
+
+				</p><br>
+			</div>
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">conio-h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					#ifndef	_CONIO_H_
+					#define	_CONIO_H_
+
+					/* All the headers include this file. */
+					#include <_mingw.h>
+
+					#ifndef RC_INVOKED
+
+					#ifdef	__cplusplus
+					extern "C" {
+					#endif
+
+					_CRTIMP char* __cdecl	_cgets (char*);
+					_CRTIMP int __cdecl	_cprintf (const char*, ...);
+					_CRTIMP int __cdecl	_cputs (const char*);
+					_CRTIMP int __cdecl	_cscanf (char*, ...);
+
+					_CRTIMP int __cdecl	_getch (void);
+					_CRTIMP int __cdecl	_getche (void);
+					_CRTIMP int __cdecl	_kbhit (void);
+					_CRTIMP int __cdecl	_putch (int);
+					_CRTIMP int __cdecl	_ungetch (int);
+
+					#ifndef	_NO_OLDNAMES
+
+					_CRTIMP int __cdecl	getch (void);
+					_CRTIMP int __cdecl	getche (void);
+					_CRTIMP int __cdecl	kbhit (void);
+					_CRTIMP int __cdecl	putch (int);
+					_CRTIMP int __cdecl	ungetch (int);
+
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">string.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					* Prototypes of the ANSI Standard C library string functions.
+					*/
+					_CRTIMP void* __cdecl	memchr (const void*, int, size_t) __MINGW_ATTRIB_PURE;
+					_CRTIMP int __cdecl 	memcmp (const void*, const void*, size_t) __MINGW_ATTRIB_PURE;
+					_CRTIMP void* __cdecl 	memcpy (void*, const void*, size_t);
+					_CRTIMP void* __cdecl	memmove (void*, const void*, size_t);
+					_CRTIMP void* __cdecl	memset (void*, int, size_t);
+					_CRTIMP char* __cdecl	strcat (char*, const char*);
+					_CRTIMP char* __cdecl	strchr (const char*, int)  __MINGW_ATTRIB_PURE;
+					_CRTIMP int __cdecl	strcmp (const char*, const char*)  __MINGW_ATTRIB_PURE;
+					_CRTIMP int __cdecl	strcoll (const char*, const char*);	/* Compare using locale */
+					_CRTIMP char* __cdecl	strcpy (char*, const char*);
+					_CRTIMP size_t __cdecl	strcspn (const char*, const char*)  __MINGW_ATTRIB_PURE;
+					_CRTIMP char* __cdecl	strerror (int); /* NOTE: NOT an old name wrapper. */
+
+					_CRTIMP size_t __cdecl	strlen (const char*)  __MINGW_ATTRIB_PURE;
+					_CRTIMP char* __cdecl	strncat (char*, const char*, size_t);
+					_CRTIMP int __cdecl	strncmp (const char*, const char*, size_t)  __MINGW_ATTRIB_PURE;
+					_CRTIMP char* __cdecl	strncpy (char*, const char*, size_t);
+					_CRTIMP char* __cdecl	strpbrk (const char*, const char*)  __MINGW_ATTRIB_PURE;
+					_CRTIMP char* __cdecl	strrchr (const char*, int)  __MINGW_ATTRIB_PURE;
+					_CRTIMP size_t __cdecl	strspn (const char*, const char*)  __MINGW_ATTRIB_PURE;
+					_CRTIMP char* __cdecl	strstr (const char*, const char*)  __MINGW_ATTRIB_PURE;
+					_CRTIMP char* __cdecl	strtok (char*, const char*);
+					_CRTIMP size_t __cdecl	strxfrm (char*, const char*, size_t);
+
+					#ifndef __STRICT_ANSI__
+					/*
+					* Extra non-ANSI functions provided by the CRTDLL library
+					*/
+					_CRTIMP char* __cdecl	_strerror (const char *);
+					_CRTIMP void* __cdecl	_memccpy (void*, const void*, int, size_t);
+					_CRTIMP int __cdecl 	_memicmp (const void*, const void*, size_t);
+					_CRTIMP char* __cdecl 	_strdup (const char*) __MINGW_ATTRIB_MALLOC;
+					_CRTIMP int __cdecl	_strcmpi (const char*, const char*);
+					_CRTIMP int __cdecl	_stricmp (const char*, const char*);
+					_CRTIMP int __cdecl	_stricoll (const char*, const char*);
+					_CRTIMP char* __cdecl	_strlwr (char*);
+					_CRTIMP int __cdecl	_strnicmp (const char*, const char*, size_t);
+					_CRTIMP char* __cdecl	_strnset (char*, int, size_t);
+					_CRTIMP char* __cdecl	_strrev (char*);
+					_CRTIMP char* __cdecl	_strset (char*, int);
+					_CRTIMP char* __cdecl	_strupr (char*);
+					_CRTIMP void __cdecl	_swab (const char*, char*, size_t);
+
+					#ifdef __MSVCRT__
+					_CRTIMP int __cdecl  _strncoll(const char*, const char*, size_t);
+					_CRTIMP int __cdecl  _strnicoll(const char*, const char*, size_t);
+					#endif
+
+					#ifndef	_NO_OLDNAMES
+					/*
+					* Non-underscored versions of non-ANSI functions. They live in liboldnames.a
+					* and provide a little extra portability. Also a few extra UNIX-isms like
+					* strcasecmp.
+					*/
+					_CRTIMP void* __cdecl	memccpy (void*, const void*, int, size_t);
+					_CRTIMP int __cdecl	memicmp (const void*, const void*, size_t);
+					_CRTIMP char* __cdecl	strdup (const char*) __MINGW_ATTRIB_MALLOC;
+					_CRTIMP int __cdecl	strcmpi (const char*, const char*);
+					_CRTIMP int __cdecl	stricmp (const char*, const char*);
+					__CRT_INLINE int __cdecl
+					strcasecmp (const char * __sz1, const char * __sz2)
+					 {return _stricmp (__sz1, __sz2);}
+					_CRTIMP int __cdecl	stricoll (const char*, const char*);
+					_CRTIMP char* __cdecl	strlwr (char*);
+					_CRTIMP int __cdecl	strnicmp (const char*, const char*, size_t);
+					__CRT_INLINE int __cdecl
+					strncasecmp (const char * __sz1, const char * __sz2, size_t __sizeMaxCompare)
+					 {return _strnicmp (__sz1, __sz2, __sizeMaxCompare);}
+					_CRTIMP char* __cdecl	strnset (char*, int, size_t);
+					_CRTIMP char* __cdecl	strrev (char*);
+					_CRTIMP char* __cdecl	strset (char*, int);
+					_CRTIMP char* __cdecl	strupr (char*);
+					#ifndef _UWIN
+					_CRTIMP void __cdecl	swab (const char*, char*, size_t);
+					#endif /* _UWIN */
+					#endif /* _NO_OLDNAMES */
+
+					#endif	/* Not __STRICT_ANSI__ */
+
+					#ifndef _WSTRING_DEFINED
+					/*
+					* Unicode versions of the standard calls.
+					* Also in wchar.h, where they belong according to ISO standard.
+					*/
+					_CRTIMP wchar_t* __cdecl wcscat (wchar_t*, const wchar_t*);
+					_CRTIMP wchar_t* __cdecl wcschr (const wchar_t*, wchar_t);
+					_CRTIMP int __cdecl	wcscmp (const wchar_t*, const wchar_t*);
+					_CRTIMP int __cdecl	wcscoll (const wchar_t*, const wchar_t*);
+					_CRTIMP wchar_t* __cdecl wcscpy (wchar_t*, const wchar_t*);
+					_CRTIMP size_t __cdecl	wcscspn (const wchar_t*, const wchar_t*);
+					/* Note:  _wcserror requires __MSVCRT_VERSION__ >= 0x0700.  */
+					_CRTIMP size_t __cdecl	wcslen (const wchar_t*);
+					_CRTIMP wchar_t* __cdecl wcsncat (wchar_t*, const wchar_t*, size_t);
+					_CRTIMP int __cdecl	wcsncmp(const wchar_t*, const wchar_t*, size_t);
+					_CRTIMP wchar_t* __cdecl wcsncpy(wchar_t*, const wchar_t*, size_t);
+					_CRTIMP wchar_t* __cdecl wcspbrk(const wchar_t*, const wchar_t*);
+					_CRTIMP wchar_t* __cdecl wcsrchr(const wchar_t*, wchar_t);
+					_CRTIMP size_t __cdecl	wcsspn(const wchar_t*, const wchar_t*);
+					_CRTIMP wchar_t* __cdecl wcsstr(const wchar_t*, const wchar_t*);
+					_CRTIMP wchar_t* __cdecl wcstok(wchar_t*, const wchar_t*);
+					_CRTIMP size_t __cdecl	wcsxfrm(wchar_t*, const wchar_t*, size_t);
+
+					#ifndef	__STRICT_ANSI__
+					/*
+					* Unicode versions of non-ANSI string functions provided by CRTDLL.
+					*/
+
+					/* NOTE: _wcscmpi not provided by CRTDLL, this define is for portability */
+					#define		_wcscmpi	_wcsicmp
+
+					_CRTIMP wchar_t* __cdecl _wcsdup (const wchar_t*);
+					_CRTIMP int __cdecl	_wcsicmp (const wchar_t*, const wchar_t*);
+					_CRTIMP int __cdecl	_wcsicoll (const wchar_t*, const wchar_t*);
+					_CRTIMP wchar_t* __cdecl _wcslwr (wchar_t*);
+					_CRTIMP int __cdecl	_wcsnicmp (const wchar_t*, const wchar_t*, size_t);
+					_CRTIMP wchar_t* __cdecl _wcsnset (wchar_t*, wchar_t, size_t);
+					_CRTIMP wchar_t* __cdecl _wcsrev (wchar_t*);
+					_CRTIMP wchar_t* __cdecl _wcsset (wchar_t*, wchar_t);
+					_CRTIMP wchar_t* __cdecl _wcsupr (wchar_t*);
+
+					#ifdef __MSVCRT__
+					_CRTIMP int __cdecl  _wcsncoll(const wchar_t*, const wchar_t*, size_t);
+					_CRTIMP int   __cdecl _wcsnicoll(const wchar_t*, const wchar_t*, size_t);
+					#if __MSVCRT_VERSION__ >= 0x0700
+					_CRTIMP  wchar_t* __cdecl _wcserror(int);
+					_CRTIMP  wchar_t* __cdecl __wcserror(const wchar_t*);
+					#endif
+					#endif
+
+					#ifndef	_NO_OLDNAMES
+					/* NOTE: There is no _wcscmpi, but this is for compatibility. */
+					int __cdecl wcscmpi (const wchar_t * __ws1, const wchar_t * __ws2);
+					__CRT_INLINE int __cdecl
+					wcscmpi (const wchar_t * __ws1, const wchar_t * __ws2)
+					 {return _wcsicmp (__ws1, __ws2);}
+					_CRTIMP wchar_t* __cdecl wcsdup (const wchar_t*);
+					_CRTIMP int __cdecl	wcsicmp (const wchar_t*, const wchar_t*);
+					_CRTIMP int __cdecl	wcsicoll (const wchar_t*, const wchar_t*);
+					_CRTIMP wchar_t* __cdecl wcslwr (wchar_t*);
+					_CRTIMP int __cdecl	wcsnicmp (const wchar_t*, const wchar_t*, size_t);
+					_CRTIMP wchar_t* __cdecl wcsnset (wchar_t*, wchar_t, size_t);
+					_CRTIMP wchar_t* __cdecl wcsrev (wchar_t*);
+					_CRTIMP wchar_t* __cdecl wcsset (wchar_t*, wchar_t);
+					_CRTIMP wchar_t* __cdecl wcsupr (wchar_t*);
+
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">stdlib.h </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div>
+		</div>
+
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">stdlib.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					extern int	_argc;
+extern char**	_argv;
+
+/* imports from runtime dll of the above variables */
+#ifdef __MSVCRT__
+
+extern int*  __cdecl   __p___argc(void);
+extern char*** __cdecl  __p___argv(void);
+extern wchar_t***  __cdecl __p___wargv(void);
+
+#define __argc (*__p___argc())
+#define __argv (*__p___argv())
+#define __wargv (*__p___wargv())
+
+#else /* !MSVCRT */
+
+#ifndef __DECLSPEC_SUPPORTED
+
+extern int*    _imp____argc_dll;
+extern char***  _imp____argv_dll;
+#define __argc (*_imp____argc_dll)
+#define __argv (*_imp____argv_dll)
+
+#else /* __DECLSPEC_SUPPORTED */
+
+__MINGW_IMPORT int    __argc_dll;
+__MINGW_IMPORT char**  __argv_dll;
+#define __argc __argc_dll
+#define __argv __argv_dll
+
+#endif /* __DECLSPEC_SUPPORTED */
+
+#endif /* __MSVCRT */
+#endif /* __STRICT_ANSI__ */
+/*
+ * Also defined in ctype.h.
+ */
+#ifndef MB_CUR_MAX
+#ifdef __DECLSPEC_SUPPORTED
+# ifdef __MSVCRT__
+#  define MB_CUR_MAX __mb_cur_max
+   __MINGW_IMPORT int __mb_cur_max;
+# else		/* not __MSVCRT */
+#  define MB_CUR_MAX __mb_cur_max_dll
+   __MINGW_IMPORT int __mb_cur_max_dll;
+# endif		/* not __MSVCRT */
+
+#else		/* ! __DECLSPEC_SUPPORTED */
+# ifdef __MSVCRT__
+   extern int* _imp____mbcur_max;
+#  define MB_CUR_MAX (*_imp____mb_cur_max)
+# else		/* not __MSVCRT */
+   extern int*  _imp____mbcur_max_dll;
+#  define MB_CUR_MAX (*_imp____mb_cur_max_dll)
+# endif 	/* not __MSVCRT */
+#endif  	/*  __DECLSPEC_SUPPORTED */
+#endif  /* MB_CUR_MAX */
+
+/*
+ * MS likes to declare errno in stdlib.h as well.
+ */
+
+#ifdef _UWIN
+#undef errno
+extern int errno;
+#else
+ _CRTIMP int* __cdecl	_errno(void);
+#define	errno		(*_errno())
+#endif
+ _CRTIMP int* __cdecl	__doserrno(void);
+#define	_doserrno	(*__doserrno())
+
+#if !defined (__STRICT_ANSI__)
+/*
+ * Use environ from the DLL, not as a global.
+ */
+
+#ifdef __MSVCRT__
+  extern _CRTIMP char *** __cdecl __p__environ(void);
+  extern _CRTIMP wchar_t *** __cdecl  __p__wenviron(void);
+# define _environ (*__p__environ())
+# define _wenviron (*__p__wenviron())
+#else /* ! __MSVCRT__ */
+# ifndef __DECLSPEC_SUPPORTED
+    extern char *** _imp___environ_dll;
+#   define _environ (*_imp___environ_dll)
+# else /* __DECLSPEC_SUPPORTED */
+    __MINGW_IMPORT char ** _environ_dll;
+#   define _environ _environ_dll
+# endif /* __DECLSPEC_SUPPORTED */
+#endif /* ! __MSVCRT__ */
+
+#define environ _environ
+
+#ifdef	__MSVCRT__
+/* One of the MSVCRTxx libraries */
+
+#ifndef __DECLSPEC_SUPPORTED
+  extern int*	_imp___sys_nerr;
+# define	sys_nerr	(*_imp___sys_nerr)
+#else /* __DECLSPEC_SUPPORTED */
+  __MINGW_IMPORT int	_sys_nerr;
+# ifndef _UWIN
+#   define	sys_nerr	_sys_nerr
+# endif /* _UWIN */
+#endif /* __DECLSPEC_SUPPORTED */
+
+#else /* ! __MSVCRT__ */
+
+/* CRTDLL run time library */
+
+#ifndef __DECLSPEC_SUPPORTED
+  extern int*	_imp___sys_nerr_dll;
+# define sys_nerr	(*_imp___sys_nerr_dll)
+#else /* __DECLSPEC_SUPPORTED */
+  __MINGW_IMPORT int	_sys_nerr_dll;
+# define sys_nerr	_sys_nerr_dll
+#endif /* __DECLSPEC_SUPPORTED */
+
+#endif /* ! __MSVCRT__ */
+
+#ifndef __DECLSPEC_SUPPORTED
+extern char***	_imp__sys_errlist;
+#define	sys_errlist	(*_imp___sys_errlist)
+#else /* __DECLSPEC_SUPPORTED */
+__MINGW_IMPORT char*	_sys_errlist[];
+#ifndef _UWIN
+#define	sys_errlist	_sys_errlist
+#endif /* _UWIN */
+#endif /* __DECLSPEC_SUPPORTED */
+
+/*
+ * OS version and such constants.
+ */
+
+#ifdef	__MSVCRT__
+/* msvcrtxx.dll */
+
+extern _CRTIMP unsigned __cdecl int*	__p__osver(void);
+extern _CRTIMP unsigned __cdecl int*	__p__winver(void);
+extern _CRTIMP unsigned __cdecl int*	__p__winmajor(void);
+extern _CRTIMP unsigned __cdecl int*	__p__winminor(void);
+
+#ifndef __DECLSPEC_SUPPORTED
+# define _osver		(*__p__osver())
+# define _winver	(*__p__winver())
+# define _winmajor	(*__p__winmajor())
+# define _winminor	(*__p__winminor())
+#else
+__MINGW_IMPORT unsigned int _osver;
+__MINGW_IMPORT unsigned int _winver;
+__MINGW_IMPORT unsigned int _winmajor;
+__MINGW_IMPORT unsigned int _winminor;
+#endif /* __DECLSPEC_SUPPORTED */
+
+#else
+/* Not msvcrtxx.dll, thus crtdll.dll */
+
+#ifndef __DECLSPEC_SUPPORTED
+
+extern unsigned int*	_imp___osver_dll;
+extern unsigned int*	_imp___winver_dll;
+extern unsigned int*	_imp___winmajor_dll;
+extern unsigned int*	_imp___winminor_dll;
+
+#define _osver		(*_imp___osver_dll)
+#define _winver		(*_imp___winver_dll)
+#define _winmajor	(*_imp___winmajor_dll)
+#define _winminor	(*_imp___winminor_dll)
+
+#else /* __DECLSPEC_SUPPORTED */
+
+__MINGW_IMPORT unsigned int	_osver_dll;
+__MINGW_IMPORT unsigned int	_winver_dll;
+__MINGW_IMPORT unsigned int	_winmajor_dll;
+__MINGW_IMPORT unsigned int	_winminor_dll;
+
+#define _osver		_osver_dll
+#define _winver		_winver_dll
+#define _winmajor	_winmajor_dll
+#define _winminor	_winminor_dll
+
+#endif /* __DECLSPEC_SUPPORTED */
+
+#endif
+
+#if defined  __MSVCRT__
+/* although the _pgmptr is exported as DATA,
+ * be safe and use the access function __p__pgmptr() to get it. */
+_CRTIMP char** __cdecl __p__pgmptr(void);
+#define _pgmptr     (*__p__pgmptr())
+_CRTIMP wchar_t** __cdecl __p__wpgmptr(void);
+#define _wpgmptr    (*__p__wpgmptr())
+#else /* ! __MSVCRT__ */
+# ifndef __DECLSPEC_SUPPORTED
+  extern char** __imp__pgmptr_dll;
+# define _pgmptr (*_imp___pgmptr_dll)
+# else /* __DECLSPEC_SUPPORTED */
+ __MINGW_IMPORT char* _pgmptr_dll;
+# define _pgmptr _pgmptr_dll
+# endif /* __DECLSPEC_SUPPORTED */
+/* no wide version in CRTDLL */
+#endif /* __MSVCRT__ */
+
+/*
+ * This variable determines the default file mode.
+ * TODO: Which flags work?
+ */
+#if !defined (__DECLSPEC_SUPPORTED) || defined (__IN_MINGW_RUNTIME)
+
+#ifdef __MSVCRT__
+extern int* _imp___fmode;
+#define	_fmode	(*_imp___fmode)
+#else
+/* CRTDLL */
+extern int* _imp___fmode_dll;
+#define	_fmode	(*_imp___fmode_dll)
+#endif
+
+#else /* __DECLSPEC_SUPPORTED */
+
+#ifdef __MSVCRT__
+__MINGW_IMPORT  int _fmode;
+#else /* ! __MSVCRT__ */
+__MINGW_IMPORT  int _fmode_dll;
+#define	_fmode	_fmode_dll
+#endif /* ! __MSVCRT__ */
+
+#endif /* __DECLSPEC_SUPPORTED */
+
+#endif /* Not __STRICT_ANSI__ */
+
+_CRTIMP double __cdecl	atof	(const char*);
+_CRTIMP int __cdecl	atoi	(const char*);
+_CRTIMP long __cdecl 	atol	(const char*);
+#if !defined (__STRICT_ANSI__)
+_CRTIMP int __cdecl	_wtoi (const wchar_t *);
+_CRTIMP long __cdecl _wtol (const wchar_t *);
+#endif
+_CRTIMP double __cdecl	strtod	(const char*, char**);
+#if !defined __NO_ISOCEXT  /* extern stub in static libmingwex.a */
+__CRT_INLINE float __cdecl strtof (const char *nptr, char **endptr)
+  { return (strtod (nptr, endptr));}
+long double __cdecl strtold (const char * __restrict__, char ** __restrict__);
+#endif /* __NO_ISOCEXT */
+
+_CRTIMP long __cdecl	strtol	(const char*, char**, int);
+_CRTIMP unsigned long __cdecl	strtoul	(const char*, char**, int);
+
+#ifndef _WSTDLIB_DEFINED
+/*  also declared in wchar.h */
+_CRTIMP double __cdecl	wcstod	(const wchar_t*, wchar_t**);
+#if !defined __NO_ISOCEXT /* extern stub in static libmingwex.a */
+__CRT_INLINE float __cdecl wcstof( const wchar_t *nptr, wchar_t **endptr)
+{  return (wcstod(nptr, endptr)); }
+long double __cdecl wcstold (const wchar_t * __restrict__, wchar_t ** __restrict__);
+#endif /* __NO_ISOCEXT */
+
+_CRTIMP long __cdecl	wcstol	(const wchar_t*, wchar_t**, int);
+_CRTIMP unsigned long __cdecl	wcstoul (const wchar_t*, wchar_t**, int);
+#define _WSTDLIB_DEFINED
+#endif
+
+_CRTIMP size_t __cdecl	wcstombs	(char*, const wchar_t*, size_t);
+_CRTIMP int __cdecl	wctomb		(char*, wchar_t);
+
+_CRTIMP int __cdecl	mblen		(const char*, size_t);
+_CRTIMP size_t __cdecl	mbstowcs	(wchar_t*, const char*, size_t);
+_CRTIMP int __cdecl	mbtowc		(wchar_t*, const char*, size_t);
+
+_CRTIMP int __cdecl	rand	(void);
+_CRTIMP void __cdecl	srand	(unsigned int);
+
+_CRTIMP void* __cdecl	calloc	(size_t, size_t) __MINGW_ATTRIB_MALLOC;
+_CRTIMP void* __cdecl	malloc	(size_t) __MINGW_ATTRIB_MALLOC;
+_CRTIMP void* __cdecl	realloc	(void*, size_t);
+_CRTIMP void __cdecl	free	(void*);
+
+_CRTIMP void __cdecl	abort	(void) __MINGW_ATTRIB_NORETURN;
+_CRTIMP void __cdecl	exit	(int) __MINGW_ATTRIB_NORETURN;
+
+/* Note: This is in startup code, not imported directly from dll */
+int __cdecl	atexit	(void (*)(void));
+
+_CRTIMP int __cdecl	system	(const char*);
+_CRTIMP char* __cdecl	getenv	(const char*);
+
+/* bsearch and qsort are also in non-ANSI header search.h  */
+_CRTIMP void* __cdecl	bsearch	(const void*, const void*, size_t, size_t,
+				 int (*)(const void*, const void*));
+_CRTIMP void __cdecl	qsort	(void*, size_t, size_t,
+				 int (*)(const void*, const void*));
+
+_CRTIMP int __cdecl	abs	(int) __MINGW_ATTRIB_CONST;
+_CRTIMP long __cdecl	labs	(long) __MINGW_ATTRIB_CONST;
+
+/*
+ * div_t and ldiv_t are structures used to return the results of div and
+ * ldiv.
+ *
+ * NOTE: div and ldiv appear not to work correctly unless
+ *       -fno-pcc-struct-return is specified. This is included in the
+ *       mingw32 specs file.
+ */
+typedef struct { int quot, rem; } div_t;
+typedef struct { long quot, rem; } ldiv_t;
+
+_CRTIMP div_t __cdecl	div	(int, int) __MINGW_ATTRIB_CONST;
+_CRTIMP ldiv_t __cdecl	ldiv	(long, long) __MINGW_ATTRIB_CONST;
+
+#if !defined (__STRICT_ANSI__)
+
+/*
+ * NOTE: Officially the three following functions are obsolete. The Win32 API
+ *       functions SetErrorMode, Beep and Sleep are their replacements.
+ */
+_CRTIMP void __cdecl	_beep (unsigned int, unsigned int);
+_CRTIMP void __cdecl	_seterrormode (int);
+_CRTIMP void __cdecl	_sleep (unsigned long);
+
+_CRTIMP void __cdecl	_exit	(int) __MINGW_ATTRIB_NORETURN;
+
+/* _onexit is MS extension. Use atexit for portability.  */
+/* Note: This is in startup code, not imported directly from dll */
+typedef  int (* _onexit_t)(void);
+_onexit_t __cdecl _onexit( _onexit_t );
+
+_CRTIMP int __cdecl	_putenv	(const char*);
+_CRTIMP void __cdecl	_searchenv (const char*, const char*, char*);
+
+_CRTIMP char* __cdecl	_ecvt (double, int, int*, int*);
+_CRTIMP char* __cdecl	_fcvt (double, int, int*, int*);
+_CRTIMP char* __cdecl	_gcvt (double, int, char*);
+
+_CRTIMP void __cdecl	_makepath (char*, const char*, const char*, const char*, const char*);
+_CRTIMP void __cdecl	_splitpath (const char*, char*, char*, char*, char*);
+_CRTIMP char* __cdecl	_fullpath (char*, const char*, size_t);
+
+_CRTIMP char* __cdecl	_itoa (int, char*, int);
+_CRTIMP char* __cdecl	_ltoa (long, char*, int);
+_CRTIMP char* __cdecl   _ultoa(unsigned long, char*, int);
+_CRTIMP wchar_t* __cdecl  _itow (int, wchar_t*, int);
+_CRTIMP wchar_t* __cdecl  _ltow (long, wchar_t*, int);
+_CRTIMP wchar_t* __cdecl  _ultow (unsigned long, wchar_t*, int);
+
+#ifdef __MSVCRT__
+_CRTIMP __int64 __cdecl	_atoi64(const char *);
+_CRTIMP char* __cdecl	_i64toa(__int64, char *, int);
+_CRTIMP char* __cdecl	_ui64toa(unsigned __int64, char *, int);
+_CRTIMP __int64 __cdecl	_wtoi64(const wchar_t *);
+_CRTIMP wchar_t* __cdecl _i64tow(__int64, wchar_t *, int);
+_CRTIMP wchar_t* __cdecl _ui64tow(unsigned __int64, wchar_t *, int);
+
+_CRTIMP wchar_t* __cdecl _wgetenv(const wchar_t*);
+_CRTIMP int __cdecl	 _wputenv(const wchar_t*);
+_CRTIMP void __cdecl	_wsearchenv(const wchar_t*, const wchar_t*, wchar_t*);
+_CRTIMP void __cdecl    _wmakepath(wchar_t*, const wchar_t*, const wchar_t*, const wchar_t*, const wchar_t*);
+_CRTIMP void __cdecl	_wsplitpath (const wchar_t*, wchar_t*, wchar_t*, wchar_t*, wchar_t*);
+_CRTIMP wchar_t* __cdecl    _wfullpath (wchar_t*, const wchar_t*, size_t);
+
+_CRTIMP unsigned int __cdecl _rotl(unsigned int, int) __MINGW_ATTRIB_CONST;
+_CRTIMP unsigned int __cdecl _rotr(unsigned int, int) __MINGW_ATTRIB_CONST;
+_CRTIMP unsigned long __cdecl _lrotl(unsigned long, int) __MINGW_ATTRIB_CONST;
+_CRTIMP unsigned long __cdecl _lrotr(unsigned long, int) __MINGW_ATTRIB_CONST;
+#endif
+
+#ifndef	_NO_OLDNAMES
+
+_CRTIMP int __cdecl	putenv (const char*);
+_CRTIMP void __cdecl	searchenv (const char*, const char*, char*);
+
+_CRTIMP char* __cdecl	itoa (int, char*, int);
+_CRTIMP char* __cdecl	ltoa (long, char*, int);
+
+#ifndef _UWIN
+_CRTIMP char* __cdecl	ecvt (double, int, int*, int*);
+_CRTIMP char* __cdecl	fcvt (double, int, int*, int*);
+_CRTIMP char* __cdecl	gcvt (double, int, char*);
+#endif /* _UWIN */
+#endif	/* Not _NO_OLDNAMES */
+
+#endif	/* Not __STRICT_ANSI__ */
+
+/* C99 names */
+
+#if !defined __NO_ISOCEXT /* externs in static libmingwex.a */
+
+/* C99 name for _exit */
+void __cdecl _Exit(int) __MINGW_ATTRIB_NORETURN;
+#ifndef __STRICT_ANSI__   /* inline using non-ansi functions */
+__CRT_INLINE void __cdecl _Exit(int status)
+	{  _exit(status); }
+#endif
+
+typedef struct { long long quot, rem; } lldiv_t;
+
+lldiv_t	__cdecl lldiv (long long, long long) __MINGW_ATTRIB_CONST;
+
+__CRT_INLINE long long __cdecl llabs(long long _j)
+  {return (_j >= 0 ? _j : -_j);}
+
+long long  __cdecl strtoll (const char* __restrict__, char** __restrict, int);
+unsigned long long  __cdecl strtoull (const char* __restrict__, char** __restrict__, int);
+
+#if defined (__MSVCRT__) /* these are stubs for MS _i64 versions */
+long long  __cdecl atoll (const char *);
+
+#if !defined (__STRICT_ANSI__)
+long long  __cdecl wtoll (const wchar_t *);
+char* __cdecl lltoa (long long, char *, int);
+char* __cdecl ulltoa (unsigned long long , char *, int);
+wchar_t* __cdecl lltow (long long, wchar_t *, int);
+wchar_t* __cdecl ulltow (unsigned long long, wchar_t *, int);
+
+  /* inline using non-ansi functions */
+__CRT_INLINE long long  __cdecl atoll (const char * _c)
+	{ return _atoi64 (_c); }
+__CRT_INLINE char*  __cdecl lltoa (long long _n, char * _c, int _i)
+	{ return _i64toa (_n, _c, _i); }
+__CRT_INLINE char*  __cdecl ulltoa (unsigned long long _n, char * _c, int _i)
+	{ return _ui64toa (_n, _c, _i); }
+__CRT_INLINE long long  __cdecl wtoll (const wchar_t * _w)
+ 	{ return _wtoi64 (_w); }
+__CRT_INLINE wchar_t*  __cdecl lltow (long long _n, wchar_t * _w, int _i)
+	{ return _i64tow (_n, _w, _i); }
+__CRT_INLINE wchar_t*  __cdecl ulltow (unsigned long long _n, wchar_t * _w, int _i)
+	{ return _ui64tow (_n, _w, _i); }
+#endif /* (__STRICT_ANSI__)  */
+
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">math.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					#ifndef __DECLSPEC_SUPPORTED
+
+#ifdef __MSVCRT__
+extern double*	_imp___HUGE;
+#define	HUGE_VAL	(*_imp___HUGE)
+#else
+/* CRTDLL */
+extern double*	_imp___HUGE_dll;
+#define	HUGE_VAL	(*_imp___HUGE_dll)
+#endif
+
+#else /* __DECLSPEC_SUPPORTED */
+
+#ifdef __MSVCRT__
+__MINGW_IMPORT double	_HUGE;
+#define	HUGE_VAL	_HUGE
+#else
+/* CRTDLL */
+__MINGW_IMPORT double	_HUGE_dll;
+#define	HUGE_VAL	_HUGE_dll
+#endif
+
+#endif /* __DECLSPEC_SUPPORTED */
+
+struct _exception
+{
+	int	type;
+	char	*name;
+	double	arg1;
+	double	arg2;
+	double	retval;
+};
+
+_CRTIMP double __cdecl sin (double);
+_CRTIMP double __cdecl cos (double);
+_CRTIMP double __cdecl tan (double);
+_CRTIMP double __cdecl sinh (double);
+_CRTIMP double __cdecl cosh (double);
+_CRTIMP double __cdecl tanh (double);
+_CRTIMP double __cdecl asin (double);
+_CRTIMP double __cdecl acos (double);
+_CRTIMP double __cdecl atan (double);
+_CRTIMP double __cdecl atan2 (double, double);
+_CRTIMP double __cdecl exp (double);
+_CRTIMP double __cdecl log (double);
+_CRTIMP double __cdecl log10 (double);
+_CRTIMP	double __cdecl pow (double, double);
+_CRTIMP double __cdecl sqrt (double);
+_CRTIMP double __cdecl ceil (double);
+_CRTIMP double __cdecl floor (double);
+_CRTIMP double __cdecl fabs (double);
+_CRTIMP double __cdecl ldexp (double, int);
+_CRTIMP double __cdecl frexp (double, int*);
+_CRTIMP double __cdecl modf (double, double*);
+_CRTIMP double __cdecl fmod (double, double);
+
+/* Excess precision when using a 64-bit mantissa for FPU math ops can
+   cause unexpected results with some of the MSVCRT math functions.  For
+   example, unless the function return value is stored (truncating to
+   53-bit mantissa), calls to pow with both x and y as integral values
+   sometimes produce a non-integral result.
+   One workaround is to reset the FPU env to 53-bit mantissa
+   by a call to fesetenv (FE_PC53_ENV).  Amother is to force storage
+   of the return value of individual math functions using wrappers.
+   NB, using these wrappers will disable builtin math functions and
+   hence disable the folding of function results at compile time when
+   arguments are constant.  */
+
+#if 0
+#define __DEFINE_FLOAT_STORE_MATHFN_D1(fn1)	\
+static __inline__ double			\
+__float_store_ ## fn1 (double x)		\
+{						\
+   __volatile__ double res = (fn1) (x);		\
+  return res;					\
+}
+
+#define __DEFINE_FLOAT_STORE_MATHFN_D2(fn2)	\
+static __inline__ double			\
+__float_store_ ## fn2 (double x, double y)	\
+{						\
+  __volatile__ double res = (fn2) (x, y);	\
+  return res;					\
+}
+#endif
+
+/* For example, here is how to force the result of the pow function
+   to be stored:   */
+#if 0
+#undef pow
+/* Define the ___float_store_pow function and use it instead of pow().  */
+__DEFINE_FLOAT_STORE_MATHFN_D2 (pow)
+#define pow __float_store_pow
+#endif
+
+#ifndef __STRICT_ANSI__
+
+/* Complex number (for _cabs). This is the MS version. The ISO
+   C99 counterpart _Complex is an intrinsic type in GCC and
+   'complex' is defined as a macro.  See complex.h  */
+struct _complex
+{
+	double	x;	/* Real part */
+	double	y;	/* Imaginary part */
+};
+
+_CRTIMP double __cdecl _cabs (struct _complex);
+
+_CRTIMP double __cdecl _hypot (double, double);
+_CRTIMP double __cdecl _j0 (double);
+_CRTIMP double __cdecl _j1 (double);
+_CRTIMP double __cdecl _jn (int, double);
+_CRTIMP double __cdecl _y0 (double);
+_CRTIMP double __cdecl _y1 (double);
+_CRTIMP double __cdecl _yn (int, double);
+_CRTIMP int __cdecl _matherr (struct _exception *);
+
+/* These are also declared in Mingw float.h; needed here as well to work
+   around GCC build issues.  */
+/* BEGIN FLOAT.H COPY */
+/*
+ * IEEE recommended functions
+ */
+
+_CRTIMP double __cdecl _chgsign (double);
+_CRTIMP double __cdecl _copysign (double, double);
+_CRTIMP double __cdecl _logb (double);
+_CRTIMP double __cdecl _nextafter (double, double);
+_CRTIMP double __cdecl _scalb (double, long);
+
+_CRTIMP int __cdecl _finite (double);
+_CRTIMP int __cdecl _fpclass (double);
+_CRTIMP int __cdecl _isnan (double);
+
+/* END FLOAT.H COPY */
+
+/*
+ * Non-underscored versions of non-ANSI functions.
+ * These reside in liboldnames.a.
+ */
+
+#if !defined (_NO_OLDNAMES)
+
+_CRTIMP double __cdecl j0 (double);
+_CRTIMP double __cdecl j1 (double);
+_CRTIMP double __cdecl jn (int, double);
+_CRTIMP double __cdecl y0 (double);
+_CRTIMP double __cdecl y1 (double);
+_CRTIMP double __cdecl yn (int, double);
+
+_CRTIMP double __cdecl chgsign (double);
+_CRTIMP double __cdecl scalb (double, long);
+_CRTIMP int __cdecl finite (double);
+_CRTIMP int __cdecl fpclass (double);
+
+#define FP_SNAN    _FPCLASS_SNAN
+#define FP_QNAN    _FPCLASS_QNAN
+#define FP_NINF    _FPCLASS_NINF
+#define FP_PINF    _FPCLASS_PINF
+#define FP_NDENORM _FPCLASS_ND
+#define FP_PDENORM _FPCLASS_PD
+#define FP_NZERO   _FPCLASS_NZ
+#define FP_PZERO   _FPCLASS_PZ
+#define FP_NNORM   _FPCLASS_NN
+#define FP_PNORM   _FPCLASS_PN
+
+#endif /* Not _NO_OLDNAMES */
+
+/* This require msvcr70.dll or higher. */
+#if __MSVCRT_VERSION__ >= 0x0700
+_CRTIMP int __cdecl _set_SSE2_enable (int);
+#endif /* __MSVCRT_VERSION__ >= 0x0700 */
+
+#endif /* __STRICT_ANSI__ */
+
+#ifndef __NO_ISOCEXT
+#if (defined (__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) \
+	|| !defined __STRICT_ANSI__ || defined __cplusplus
+
+#define NAN (0.0F/0.0F)
+#define HUGE_VALF (1.0F/0.0F)
+#define HUGE_VALL (1.0L/0.0L)
+#define INFINITY (1.0F/0.0F)
+
+/* 7.12.3.1 */
+/*
+   Return values for fpclassify.
+   These are based on Intel x87 fpu condition codes
+   in the high byte of status word and differ from
+   the return values for MS IEEE 754 extension _fpclass()
+*/
+#define FP_NAN		0x0100
+#define FP_NORMAL	0x0400
+#define FP_INFINITE	(FP_NAN | FP_NORMAL)
+#define FP_ZERO		0x4000
+#define FP_SUBNORMAL	(FP_NORMAL | FP_ZERO)
+/* 0x0200 is signbit mask */
+
+/*
+  We can't inline float or double, because we want to ensure truncation
+  to semantic type before classification.
+  (A normal long double value might become subnormal when
+  converted to double, and zero when converted to float.)
+*/
+
+extern int __cdecl __fpclassifyf (float);
+extern int __cdecl __fpclassify (double);
+
+__CRT_INLINE int __cdecl __fpclassifyl (long double x){
+  unsigned short sw;
+  __asm__ ("fxam; fstsw %%ax;" : "=a" (sw): "t" (x));
+  return sw & (FP_NAN | FP_NORMAL | FP_ZERO );
+}
+
+#define fpclassify(x) (sizeof (x) == sizeof (float) ? __fpclassifyf (x)	  \
+		       : sizeof (x) == sizeof (double) ? __fpclassify (x) \
+		       : __fpclassifyl (x))
+
+/* 7.12.3.2 */
+#define isfinite(x) ((fpclassify(x) & FP_NAN) == 0)
+
+/* 7.12.3.3 */
+#define isinf(x) (fpclassify(x) == FP_INFINITE)
+
+/* 7.12.3.4 */
+/* We don't need to worry about trucation here:
+   A NaN stays a NaN. */
+
+__CRT_INLINE int __cdecl __isnan (double _x)
+{
+  unsigned short sw;
+  __asm__ ("fxam;"
+	   "fstsw %%ax": "=a" (sw) : "t" (_x));
+  return (sw & (FP_NAN | FP_NORMAL | FP_INFINITE | FP_ZERO | FP_SUBNORMAL))
+    == FP_NAN;
+}
+
+__CRT_INLINE int __cdecl __isnanf (float _x)
+{
+  unsigned short sw;
+  __asm__ ("fxam;"
+	    "fstsw %%ax": "=a" (sw) : "t" (_x));
+  return (sw & (FP_NAN | FP_NORMAL | FP_INFINITE | FP_ZERO | FP_SUBNORMAL))
+    == FP_NAN;
+}
+
+__CRT_INLINE int __cdecl __isnanl (long double _x)
+{
+  unsigned short sw;
+  __asm__ ("fxam;"
+	    "fstsw %%ax": "=a" (sw) : "t" (_x));
+  return (sw & (FP_NAN | FP_NORMAL | FP_INFINITE | FP_ZERO | FP_SUBNORMAL))
+    == FP_NAN;
+}
+
+#define isnan(x) (sizeof (x) == sizeof (float) ? __isnanf (x)	\
+		  : sizeof (x) == sizeof (double) ? __isnan (x)	\
+		  : __isnanl (x))
+
+/* 7.12.3.5 */
+#define isnormal(x) (fpclassify(x) == FP_NORMAL)
+
+/* 7.12.3.6 The signbit macro */
+__CRT_INLINE int __cdecl __signbit (double x) {
+  unsigned short stw;
+  __asm__ ( "fxam; fstsw %%ax;": "=a" (stw) : "t" (x));
+  return stw & 0x0200;
+}
+
+__CRT_INLINE int __cdecl __signbitf (float x) {
+  unsigned short stw;
+  __asm__ ("fxam; fstsw %%ax;": "=a" (stw) : "t" (x));
+  return stw & 0x0200;
+}
+
+__CRT_INLINE int __cdecl __signbitl (long double x) {
+  unsigned short stw;
+  __asm__ ("fxam; fstsw %%ax;": "=a" (stw) : "t" (x));
+  return stw & 0x0200;
+}
+
+#define signbit(x) (sizeof (x) == sizeof (float) ? __signbitf (x)	\
+		    : sizeof (x) == sizeof (double) ? __signbit (x)	\
+		    : __signbitl (x))
+
+/* 7.12.4 Trigonometric functions: Double in C89 */
+extern float __cdecl sinf (float);
+extern long double __cdecl sinl (long double);
+
+extern float __cdecl cosf (float);
+extern long double __cdecl cosl (long double);
+
+extern float __cdecl tanf (float);
+extern long double __cdecl tanl (long double);
+
+extern float __cdecl asinf (float);
+extern long double __cdecl asinl (long double);
+
+extern float __cdecl acosf (float);
+extern long double __cdecl acosl (long double);
+
+extern float __cdecl atanf (float);
+extern long double __cdecl atanl (long double);
+
+extern float __cdecl atan2f (float, float);
+extern long double __cdecl atan2l (long double, long double);
+
+/* 7.12.5 Hyperbolic functions: Double in C89  */
+__CRT_INLINE float __cdecl sinhf (float x)
+  {return (float) sinh (x);}
+extern long double __cdecl sinhl (long double);
+
+__CRT_INLINE float __cdecl coshf (float x)
+  {return (float) cosh (x);}
+extern long double __cdecl coshl (long double);
+
+__CRT_INLINE float __cdecl tanhf (float x)
+  {return (float) tanh (x);}
+extern long double __cdecl tanhl (long double);
+
+/* Inverse hyperbolic trig functions  */
+/* 7.12.5.1 */
+extern double __cdecl acosh (double);
+extern float __cdecl acoshf (float);
+extern long double __cdecl acoshl (long double);
+
+/* 7.12.5.2 */
+extern double __cdecl asinh (double);
+extern float __cdecl asinhf (float);
+extern long double __cdecl asinhl (long double);
+
+/* 7.12.5.3 */
+extern double __cdecl atanh (double);
+extern float __cdecl atanf  (float);
+extern long double __cdecl atanhl (long double);
+
+/* Exponentials and logarithms  */
+/* 7.12.6.1 Double in C89 */
+__CRT_INLINE float __cdecl expf (float x)
+  {return (float) exp (x);}
+extern long double __cdecl expl (long double);
+
+/* 7.12.6.2 */
+extern double __cdecl exp2(double);
+extern float __cdecl exp2f(float);
+extern long double __cdecl exp2l(long double);
+
+/* 7.12.6.3 The expm1 functions: TODO */
+
+/* 7.12.6.4 Double in C89 */
+__CRT_INLINE float __cdecl frexpf (float x, int* expn)
+  {return (float) frexp (x, expn);}
+extern long double __cdecl frexpl (long double, int*);
+
+/* 7.12.6.5 */
+#define FP_ILOGB0 ((int)0x80000000)
+#define FP_ILOGBNAN ((int)0x80000000)
+extern int __cdecl ilogb (double);
+extern int __cdecl ilogbf (float);
+extern int __cdecl ilogbl (long double);
+
+/* 7.12.6.6  Double in C89 */
+__CRT_INLINE float __cdecl ldexpf (float x, int expn)
+  {return (float) ldexp (x, expn);}
+extern long double __cdecl ldexpl (long double, int);
+
+/* 7.12.6.7 Double in C89 */
+extern float __cdecl logf (float);
+extern long double __cdecl logl (long double);
+
+/* 7.12.6.8 Double in C89 */
+extern float __cdecl log10f (float);
+extern long double __cdecl log10l (long double);
+
+/* 7.12.6.9 */
+extern double __cdecl log1p(double);
+extern float __cdecl log1pf(float);
+extern long double __cdecl log1pl(long double);
+
+/* 7.12.6.10 */
+extern double __cdecl log2 (double);
+extern float __cdecl log2f (float);
+extern long double __cdecl log2l (long double);
+
+/* 7.12.6.11 */
+extern double __cdecl logb (double);
+extern float __cdecl logbf (float);
+extern long double __cdecl logbl (long double);
+
+__CRT_INLINE double __cdecl logb (double x)
+{
+  double res;
+  __asm__ ("fxtract\n\t"
+       "fstp	%%st" : "=t" (res) : "0" (x));
+  return res;
+}
+
+__CRT_INLINE float __cdecl logbf (float x)
+{
+  float res;
+  __asm__ ("fxtract\n\t"
+       "fstp	%%st" : "=t" (res) : "0" (x));
+  return res;
+}
+
+__CRT_INLINE long double __cdecl logbl (long double x)
+{
+  long double res;
+  __asm__ ("fxtract\n\t"
+       "fstp	%%st" : "=t" (res) : "0" (x));
+  return res;
+}
+
+/* 7.12.6.12  Double in C89 */
+extern float __cdecl modff (float, float*);
+extern long double __cdecl modfl (long double, long double*);
+
+/* 7.12.6.13 */
+extern double __cdecl scalbn (double, int);
+extern float __cdecl scalbnf (float, int);
+extern long double __cdecl scalbnl (long double, int);
+
+extern double __cdecl scalbln (double, long);
+extern float __cdecl scalblnf (float, long);
+extern long double __cdecl scalblnl (long double, long);
+
+/* 7.12.7.1 */
+/* Implementations adapted from Cephes versions */
+extern double __cdecl cbrt (double);
+extern float __cdecl cbrtf (float);
+extern long double __cdecl cbrtl (long double);
+
+/* 7.12.7.2 The fabs functions: Double in C89 */
+extern  float __cdecl fabsf (float x);
+extern long double __cdecl fabsl (long double x);
+
+/* 7.12.7.3  */
+extern double __cdecl hypot (double, double); /* in libmoldname.a */
+__CRT_INLINE float __cdecl hypotf (float x, float y)
+  { return (float) hypot (x, y);}
+extern long double __cdecl hypotl (long double, long double);
+
+/* 7.12.7.4 The pow functions. Double in C89 */
+__CRT_INLINE float __cdecl powf (float x, float y)
+  {return (float) pow (x, y);}
+extern long double __cdecl powl (long double, long double);
+
+/* 7.12.7.5 The sqrt functions. Double in C89. */
+extern float __cdecl sqrtf (float);
+extern long double __cdecl sqrtl (long double);
+
+/* 7.12.8.1 The erf functions  */
+extern double __cdecl erf (double);
+extern float __cdecl erff (float);
+/* TODO
+extern long double __cdecl erfl (long double);
+*/
+
+/* 7.12.8.2 The erfc functions  */
+extern double __cdecl erfc (double);
+extern float __cdecl erfcf (float);
+/* TODO
+extern long double __cdecl erfcl (long double);
+*/
+
+/* 7.12.8.3 The lgamma functions */
+extern double __cdecl lgamma (double);
+extern float __cdecl lgammaf (float);
+extern long double __cdecl lgammal (long double);
+
+/* 7.12.8.4 The tgamma functions */
+extern double __cdecl tgamma (double);
+extern float __cdecl tgammaf (float);
+extern long double __cdecl tgammal (long double);
+
+/* 7.12.9.1 Double in C89 */
+extern float __cdecl ceilf (float);
+extern long double __cdecl ceill (long double);
+
+/* 7.12.9.2 Double in C89 */
+extern float __cdecl floorf (float);
+extern long double __cdecl floorl (long double);
+
+/* 7.12.9.3 */
+extern double __cdecl nearbyint ( double);
+extern float __cdecl nearbyintf (float);
+extern long double __cdecl nearbyintl (long double);
+
+/* 7.12.9.4 */
+/* round, using fpu control word settings */
+__CRT_INLINE double __cdecl rint (double x)
+{
+  double retval;
+  __asm__ ("frndint;": "=t" (retval) : "0" (x));
+  return retval;
+}
+
+__CRT_INLINE float __cdecl rintf (float x)
+{
+  float retval;
+  __asm__ ("frndint;" : "=t" (retval) : "0" (x) );
+  return retval;
+}
+
+__CRT_INLINE long double __cdecl rintl (long double x)
+{
+  long double retval;
+  __asm__ ("frndint;" : "=t" (retval) : "0" (x) );
+  return retval;
+}
+
+/* 7.12.9.5 */
+__CRT_INLINE long __cdecl lrint (double x)
+{
+  long retval;
+  __asm__ __volatile__							      \
+    ("fistpl %0"  : "=m" (retval) : "t" (x) : "st");				      \
+  return retval;
+}
+
+__CRT_INLINE long __cdecl lrintf (float x)
+{
+  long retval;
+  __asm__ __volatile__							      \
+    ("fistpl %0"  : "=m" (retval) : "t" (x) : "st");				      \
+  return retval;
+}
+
+__CRT_INLINE long __cdecl lrintl (long double x)
+{
+  long retval;
+  __asm__ __volatile__							      \
+    ("fistpl %0"  : "=m" (retval) : "t" (x) : "st");				      \
+  return retval;
+}
+
+__CRT_INLINE long long __cdecl llrint (double x)
+{
+  long long retval;
+  __asm__ __volatile__							      \
+    ("fistpll %0"  : "=m" (retval) : "t" (x) : "st");				      \
+  return retval;
+}
+
+__CRT_INLINE long long __cdecl llrintf (float x)
+{
+  long long retval;
+  __asm__ __volatile__							      \
+    ("fistpll %0"  : "=m" (retval) : "t" (x) : "st");				      \
+  return retval;
+}
+
+__CRT_INLINE long long __cdecl llrintl (long double x)
+{
+  long long retval;
+  __asm__ __volatile__							      \
+    ("fistpll %0"  : "=m" (retval) : "t" (x) : "st");				      \
+  return retval;
+}
+
+/* 7.12.9.6 */
+/* round away from zero, regardless of fpu control word settings */
+extern double __cdecl round (double);
+extern float __cdecl roundf (float);
+extern long double __cdecl roundl (long double);
+
+/* 7.12.9.7  */
+extern long __cdecl lround (double);
+extern long __cdecl lroundf (float);
+extern long __cdecl lroundl (long double);
+
+extern long long __cdecl llround (double);
+extern long long __cdecl llroundf (float);
+extern long long __cdecl llroundl (long double);
+
+/* 7.12.9.8 */
+/* round towards zero, regardless of fpu control word settings */
+extern double __cdecl trunc (double);
+extern float __cdecl truncf (float);
+extern long double __cdecl truncl (long double);
+
+/* 7.12.10.1 Double in C89 */
+extern float __cdecl fmodf (float, float);
+extern long double __cdecl fmodl (long double, long double);
+
+/* 7.12.10.2 */
+extern double __cdecl remainder (double, double);
+extern float __cdecl remainderf (float, float);
+extern long double __cdecl remainderl (long double, long double);
+
+/* 7.12.10.3 */
+extern double __cdecl remquo(double, double, int *);
+extern float __cdecl remquof(float, float, int *);
+extern long double __cdecl remquol(long double, long double, int *);
+
+/* 7.12.11.1 */
+extern double __cdecl copysign (double, double); /* in libmoldname.a */
+extern float __cdecl copysignf (float, float);
+extern long double __cdecl copysignl (long double, long double);
+
+/* 7.12.11.2 Return a NaN */
+extern double __cdecl nan(const char *tagp);
+extern float __cdecl nanf(const char *tagp);
+extern long double __cdecl nanl(const char *tagp);
+
+#ifndef __STRICT_ANSI__
+#define _nan() nan("")
+#define _nanf() nanf("")
+#define _nanl() nanl("")
+#endif
+
+/* 7.12.11.3 */
+extern double __cdecl nextafter (double, double); /* in libmoldname.a */
+extern float __cdecl nextafterf (float, float);
+/* TODO: Not yet implemented */
+/* extern long double __cdecl nextafterl (long double, long double); */
+
+/* 7.12.11.4 The nexttoward functions: TODO */
+
+/* 7.12.12.1 */
+/*  x > y ? (x - y) : 0.0  */
+extern double __cdecl fdim (double x, double y);
+extern float __cdecl fdimf (float x, float y);
+extern long double __cdecl fdiml (long double x, long double y);
+
+/* fmax and fmin.
+   NaN arguments are treated as missing data: if one argument is a NaN
+   and the other numeric, then these functions choose the numeric
+   value. */
+
+/* 7.12.12.2 */
+extern double __cdecl fmax  (double, double);
+extern float __cdecl fmaxf (float, float);
+extern long double __cdecl fmaxl (long double, long double);
+
+/* 7.12.12.3 */
+extern double __cdecl fmin (double, double);
+extern float __cdecl fminf (float, float);
+extern long double __cdecl fminl (long double, long double);
+
+/* 7.12.13.1 */
+/* return x * y + z as a ternary op */
+extern double __cdecl fma (double, double, double);
+extern float __cdecl fmaf (float, float, float);
+extern long double __cdecl fmal (long double, long double, long double);
+
+/* 7.12.14 */
+/*
+ *  With these functions, comparisons involving quiet NaNs set the FP
+ *  condition code to "unordered".  The IEEE floating-point spec
+ *  dictates that the result of floating-point comparisons should be
+ *  false whenever a NaN is involved, with the exception of the != op,
+ *  which always returns true: yes, (NaN != NaN) is true).
+ */
+
+#if __GNUC__ >= 3
+
+#define isgreater(x, y) __builtin_isgreater(x, y)
+#define isgreaterequal(x, y) __builtin_isgreaterequal(x, y)
+#define isless(x, y) __builtin_isless(x, y)
+#define islessequal(x, y) __builtin_islessequal(x, y)
+#define islessgreater(x, y) __builtin_islessgreater(x, y)
+#define isunordered(x, y) __builtin_isunordered(x, y)
+
+#else
+/*  helper  */
+__CRT_INLINE int  __cdecl
+__fp_unordered_compare (long double x, long double y){
+  unsigned short retval;
+  __asm__ ("fucom %%st(1);"
+	   "fnstsw;": "=a" (retval) : "t" (x), "u" (y));
+  return retval;
+}
+
+#define isgreater(x, y) ((__fp_unordered_compare(x, y) \
+			   & 0x4500) == 0)
+#define isless(x, y) ((__fp_unordered_compare (y, x) \
+                       & 0x4500) == 0)
+#define isgreaterequal(x, y) ((__fp_unordered_compare (x, y) \
+                               & FP_INFINITE) == 0)
+#define islessequal(x, y) ((__fp_unordered_compare(y, x) \
+			    & FP_INFINITE) == 0)
+#define islessgreater(x, y) ((__fp_unordered_compare(x, y) \
+			      & FP_SUBNORMAL) == 0)
+#define isunordered(x, y) ((__fp_unordered_compare(x, y) \
+			    & 0x4500) == 0x4500)
+
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">time.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+
+					struct tm<br>
+					{<br>
+						int	tm_sec;		 Seconds: 0-59 (K&R says 0-61?) */<br>
+						int	tm_min;		 Minutes: 0-59 */<br>
+						int	tm_hour;	 Hours since midnight: 0-23 */<br>
+						int	tm_mday;	 Day of the month: 1-31 */<br>
+						int	tm_mon;		 Months *since* january: 0-11 */<br>
+						int	tm_year;	 Years since 1900 */<br>
+						int	tm_wday;	 Days since Sunday (0-6) */<br>
+						int	tm_yday;	 Days since Jan. 1: 0-365 */<br>
+						int	tm_isdst;	+1 Daylight Savings Time, 0 No DST,<br>
+					};<br>
+					#define _TM_DEFINED
+					#endif
+
+					#ifdef	__cplusplus
+					extern "C" {
+					#endif
+
+					_CRTIMP clock_t __cdecl	clock (void);
+					_CRTIMP time_t __cdecl	time (time_t*);
+					_CRTIMP double __cdecl	difftime (time_t, time_t);
+					_CRTIMP time_t __cdecl	mktime (struct tm*);
+
+					/*
+					 * These functions write to and return pointers to static buffers that may
+					 * be overwritten by other function calls. Yikes!
+					 *
+					 * NOTE: localtime, and perhaps the others of the four functions grouped
+					 * below may return NULL if their argument is not 'acceptable'. Also note
+					 * that calling asctime with a NULL pointer will produce an Invalid Page
+					 * Fault and crap out your program. Guess how I know. Hint: stat called on
+					 * a directory gives 'invalid' times in st_atime etc...
+					 */
+					_CRTIMP char* __cdecl		asctime (const struct tm*);
+					_CRTIMP char* __cdecl		ctime (const time_t*);
+					_CRTIMP struct tm*  __cdecl	gmtime (const time_t*);
+					_CRTIMP struct tm*  __cdecl	localtime (const time_t*);
+
+					_CRTIMP size_t __cdecl		strftime (char*, size_t, const char*, const struct tm*);
+
+					#ifndef __STRICT_ANSI__
+
+					extern _CRTIMP void __cdecl	_tzset (void);
+
+					#ifndef _NO_OLDNAMES
+					extern _CRTIMP void __cdecl	tzset (void);
+					#endif
+
+					_CRTIMP char* __cdecl	_strdate(char*);
+					_CRTIMP char* __cdecl	_strtime(char*);
+
+					/* These require newer versions of msvcrt.dll (6.10 or higher). */
+					#if __MSVCRT_VERSION__ >= 0x0601
+					_CRTIMP __time64_t __cdecl  _time64( __time64_t);
+					_CRTIMP __time64_t __cdecl  _mktime64 (struct tm*);
+					_CRTIMP char* __cdecl _ctime64 (const __time64_t*);
+					_CRTIMP struct tm*  __cdecl _gmtime64 (const __time64_t*);
+					_CRTIMP struct tm*  __cdecl _localtime64 (const __time64_t*);
+					#endif /* __MSVCRT_VERSION__ >= 0x0601 */
+
+					/*
+					 * _daylight: non zero if daylight savings time is used.
+					 * _timezone: difference in seconds between GMT and local time.
+					 * _tzname: standard/daylight savings time zone names (an array with two
+					 *          elements).
+					 */
+					#ifdef __MSVCRT__
+
+					/* These are for compatibility with pre-VC 5.0 suppied MSVCRT. */
+					extern _CRTIMP int* __cdecl	__p__daylight (void);
+					extern _CRTIMP long* __cdecl	__p__timezone (void);
+					extern _CRTIMP char** __cdecl	__p__tzname (void);
+
+					__MINGW_IMPORT int	_daylight;
+					__MINGW_IMPORT long	_timezone;
+					__MINGW_IMPORT char 	*_tzname[2];
+
+					#else /* not __MSVCRT (ie. crtdll) */
+
+					#ifndef __DECLSPEC_SUPPORTED
+
+					extern int*	_imp___daylight_dll;
+					extern long*	_imp___timezone_dll;
+					extern char**	_imp___tzname;
+
+					#define _daylight	(*_imp___daylight_dll)
+					#define _timezone	(*_imp___timezone_dll)
+					#define _tzname		(*_imp___tzname)
+
+
+					/* These go in the oldnames import library for MSVCRT. */
+					__MINGW_IMPORT int	daylight;
+					__MINGW_IMPORT long	timezone;
+					__MINGW_IMPORT char 	*tzname[2];
+
+					#else /* not __MSVCRT__ */
+
+					/* CRTDLL is royally messed up when it comes to these macros.
+					   TODO: import and alias these via oldnames import library instead
+					   of macros.  */
+
+					#define daylight        _daylight
+					/* NOTE: timezone not defined because it would conflict with sys/timeb.h.
+					   Also, tzname used to a be macro, but now it's in moldname. */
+					__MINGW_IMPORT char 	*tzname[2];
+
+					#endif /* not __MSVCRT__ */
+
+					#endif	/* Not _NO_OLDNAMES */
+					#endif	/* Not __STRICT_ANSI__ */
+
+					#ifndef _WTIME_DEFINED
+					/* wide function prototypes, also declared in wchar.h */
+					#ifndef __STRICT_ANSI__
+					#ifdef __MSVCRT__
+					_CRTIMP wchar_t* __cdecl	_wasctime(const struct tm*);
+					_CRTIMP wchar_t* __cdecl	_wctime(const time_t*);
+					_CRTIMP wchar_t* __cdecl	_wstrdate(wchar_t*);
+					_CRTIMP wchar_t* __cdecl	_wstrtime(wchar_t*);
+					#if __MSVCRT_VERSION__ >= 0x0601
+					_CRTIMP wchar_t* __cdecl	_wctime64 (const __time64_t*);
+					#endif
+					#endif /*  __MSVCRT__ */
+					#endif /* __STRICT_ANSI__ */
+					_CRTIMP size_t __cdecl		wcsftime (wchar_t*, size_t, const wchar_t*, const struct tm*);
+					#define _WTIME_DEFINED
+					#endif /* _WTIME_DEFINED */
+
+				</p><br>
+			</div>
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">ctype.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<br>
+					_CRTIMP int __cdecl isalnum(int); <br>
+					_CRTIMP int __cdecl isalpha(int);<br>
+					_CRTIMP int __cdecl iscntrl(int);<br>
+					_CRTIMP int __cdecl isdigit(int);<br>
+					_CRTIMP int __cdecl isgraph(int);<br>
+					_CRTIMP int __cdecl islower(int);<br>
+					_CRTIMP int __cdecl ispunct(int);<br>
+					_CRTIMP int __cdecl isprint(int);<br>
+					_CRTIMP int __cdecl isspace(int);<br>
+					_CRTIMP int __cdecl isupper(int);<br>
+					_CRTIMP int __cdecl isxdigit(int);<br>
+					<br><br>
+					__CRT_INLINE int __cdecl isalnum(int c) {return __ISCTYPE(c, (_ALPHA|_DIGIT));}<br>
+					__CRT_INLINE int __cdecl isalpha(int c) {return __ISCTYPE(c, _ALPHA);}<br>
+					__CRT_INLINE int __cdecl iscntrl(int c) {return __ISCTYPE(c, _CONTROL);}<br>
+					__CRT_INLINE int __cdecl isdigit(int c) {return __ISCTYPE(c, _DIGIT);}<br>
+					__CRT_INLINE int __cdecl isgraph(int c) {return __ISCTYPE(c, (_PUNCT|_ALPHA|_DIGIT));}<br>
+					__CRT_INLINE int __cdecl islower(int c) {return __ISCTYPE(c, _LOWER);}<br>
+					__CRT_INLINE int __cdecl isprint(int c) {return __ISCTYPE(c, (_BLANK|_PUNCT|_ALPHA|_DIGIT));}<br>
+					__CRT_INLINE int __cdecl ispunct(int c) {return __ISCTYPE(c, _PUNCT);}<br>
+					__CRT_INLINE int __cdecl isspace(int c) {return __ISCTYPE(c, _SPACE);}<br>
+					__CRT_INLINE int __cdecl isupper(int c) {return __ISCTYPE(c, _UPPER);}<br>
+					__CRT_INLINE int __cdecl isxdigit(int c) {return __ISCTYPE(c, _HEX);}<br>
+					__CRT_INLINE int __cdecl _tolower(int c) {return ( c -'A'+'a');}<br>
+					__CRT_INLINE int __cdecl _toupper(int c) {return ( c -'a'+'A');}<br>
+					<br><br>
+					_CRTIMP int __cdecl iswalnum(wint_t);
+					_CRTIMP int __cdecl iswalpha(wint_t);
+					_CRTIMP int __cdecl iswascii(wint_t);
+					_CRTIMP int __cdecl iswcntrl(wint_t);
+					_CRTIMP int __cdecl iswctype(wint_t, wctype_t);
+					_CRTIMP int __cdecl is_wctype(wint_t, wctype_t);<br>
+					_CRTIMP int __cdecl iswdigit(wint_t);<br>
+					_CRTIMP int __cdecl iswgraph(wint_t);<br>
+					_CRTIMP int __cdecl iswlower(wint_t);<br>
+					_CRTIMP int __cdecl iswprint(wint_t);<br>
+					_CRTIMP int __cdecl iswpunct(wint_t);<br>
+					_CRTIMP int __cdecl iswspace(wint_t);<br>
+					_CRTIMP int __cdecl iswupper(wint_t);<br>
+					_CRTIMP int __cdecl iswxdigit(wint_t);<br>
+
+					<br><br>
+					/* Also in wctype.h */
+					__CRT_INLINE int __cdecl iswalnum(wint_t wc) {return (iswctype(wc,_ALPHA|_DIGIT));}<br>
+					__CRT_INLINE int __cdecl iswalpha(wint_t wc) {return (iswctype(wc,_ALPHA));}<br>
+					__CRT_INLINE int __cdecl iswascii(wint_t wc) {return ((wc & ~0x7F) ==0);}<br>
+					__CRT_INLINE int __cdecl iswcntrl(wint_t wc) {return (iswctype(wc,_CONTROL));}<br>
+					__CRT_INLINE int __cdecl iswdigit(wint_t wc) {return (iswctype(wc,_DIGIT));}<br>
+					__CRT_INLINE int __cdecl iswgraph(wint_t wc) {return (iswctype(wc,_PUNCT|_ALPHA|_DIGIT));}<br>
+					__CRT_INLINE int __cdecl iswlower(wint_t wc) {return (iswctype(wc,_LOWER));}<br>
+					__CRT_INLINE int __cdecl iswprint(wint_t wc) {return (iswctype(wc,_BLANK|_PUNCT|_ALPHA|_DIGIT));}<br>
+					__CRT_INLINE int __cdecl iswpunct(wint_t wc) {return (iswctype(wc,_PUNCT));}<br>
+					__CRT_INLINE int __cdecl iswspace(wint_t wc) {return (iswctype(wc,_SPACE));}<br>
+					__CRT_INLINE int __cdecl iswupper(wint_t wc) {return (iswctype(wc,_UPPER));}<br>
+					__CRT_INLINE int __cdecl iswxdigit(wint_t wc) {return (iswctype(wc,_HEX));}<br>
+					__CRT_INLINE int __cdecl isleadbyte(int c) {return (_pctype[(unsigned char)(c)] & _LEADBYTE);}
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">stdlib.h </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">stdlib.h </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div>
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">stdlib.h </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">stdlib.h </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">stdlib.h </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div>
+		</div>
+
+		<div id="footer">
+			<center>
+				<p class="copyright-lable"> &#169; 2020 - 2020 </p>
+			</center>
+		</div>
+	</div>
+
+
+	<script>
+	var acc = document.getElementsByClassName("interest-description-btns");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].onclick = function() {
+	    this.classList.toggle("active");
+	    var panel = this.nextElementSibling;
+	    if (panel.style.maxHeight){
+	      panel.style.maxHeight = null;
+	    } else {
+	      panel.style.maxHeight = panel.scrollHeight + "px";
+	    }
+	  }
+	}
+	</script>
+
+</body>
+</html>

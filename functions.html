@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>C-Prog | Functions</title>
+<meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1">
+<!-- <script src="js/main.js"></script> -->
+<link rel="stylesheet" type="text/css" href="static/css/w3.css">
+<link rel="stylesheet" type="text/css" href="static/css/main.css">
+
+</head>
+<body id="main_body" ><br>
+	<div id="main_div_content">
+		<ul>
+			<li><a href="index.html"> Home</a></li>
+			<li><a href="functions.html"> Functions</a></li>
+			<li><a href="source.html"> Source</a></li>
+		</ul>
+		<br>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">stdio.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<span class="w3-badge w3-green w3-padding-smallest">1</span>
+					<b>printf ()</b>	This function is used to print the character, string, float, integer, octal and hexadecimal values onto the output screen<br>
+					<span class="w3-badge w3-green w3-padding-smallest">2</span>
+					<b>scanf ()</b>	This function is used to read a character, string, numeric data from keyboard.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">3</span>
+					<b>getc ()</b>	It reads character from file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">4</span>
+					<b>gets ()</b>	It reads line from keyboard<br>
+					<span class="w3-badge w3-green w3-padding-smallest">5</span>
+					<b>getchar ()</b>	It reads character from keyboard<br>
+					<span class="w3-badge w3-green w3-padding-smallest">5</span>
+					<b>puts ()</b>	It writes line to o/p screen<br>
+					<span class="w3-badge w3-green w3-padding-smallest">6</span>
+					<b>putchar ()</b>	It writes a character to screen<br>
+					<span class="w3-badge w3-green w3-padding-smallest">7</span>
+					<b>clearerr ()</b>	This function clears the error indicators<br>
+					<span class="w3-badge w3-green w3-padding-smallest">9</span>
+					<b>fopen ()</b>	All file handling functions are defined in stdio.h header file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">10</span>
+					<b>fclose ()</b>	closes an opened file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">11</span>
+					<b>getw ()</b>	reads an integer from file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">12</span>
+					<b>putw ()</b>	writes an integer to file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">13</span>
+					<b>fgetc ()</b>	reads a character from file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">14</span>
+					<b>putc ()</b>	writes a character to file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">15</span>
+					<b>fputc ()</b>	writes a character to file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">16</span>
+					<b>fgets ()</b>	reads string from a file, one line at a time<br>
+					<span class="w3-badge w3-green w3-padding-smallest">17</span>
+					<b>fputs ()</b>	writes string to a file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">18</span>
+					<b>feof()</b>	finds end of file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">19</span>
+					<b>fgetchar ()</b>	reads a character from keyboard<br>
+					<span class="w3-badge w3-green w3-padding-smallest">20</span>
+					<b>fgetc ()</b>	reads a character from file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">21</span>
+					<b>fprintf ()</b>	writes formatted data to a file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">22</span>
+					<b>fscanf ()</b>	reads formatted data from a file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">23</span>
+					<b>fgetchar</b>	reads a character from keyboard<br>
+					<span class="w3-badge w3-green w3-padding-smallest">24</span>
+					<b>fputchar</b>	writes a character from keyboard<br>
+					<span class="w3-badge w3-green w3-padding-smallest">25</span>
+					<b>fseek ()</b>	moves file pointer position to given location<br>
+					<span class="w3-badge w3-green w3-padding-smallest">26</span>
+					<b>SEEK_SET</b>	moves file pointer position to the beginning of the file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">27</span>
+					<b>SEEK_CUR	</b>moves file pointer position to given location<br>
+					<span class="w3-badge w3-green w3-padding-smallest">28</span>
+					<b>SEEK_END</b>	moves file pointer position to the end of file.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">29</span>
+					<b>ftell ()</b>	gives current position of file pointer<br>
+					<span class="w3-badge w3-green w3-padding-smallest">30</span>
+					<b>rewind ()</b>	moves file pointer position to the beginning of the file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">31</span>
+					<b>putc ()</b>	writes a character to file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">32</span>
+					<b>sprint ()</b>	writes formatted output to string<br>
+					<span class="w3-badge w3-green w3-padding-smallest">33</span>
+					<b>sscanf ()</b>	Reads formatted input from a string<br>
+					<span class="w3-badge w3-green w3-padding-smallest">34</span>
+					<b>remove ()</b>	deletes a file<br>
+					<span class="w3-badge w3-green w3-padding-smallest">35</span>
+					<b>fflush ()</b>	flushes a file<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+
+
+
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">conio.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+
+					<span class="w3-badge w3-green w3-padding-smallest">1</span>
+					<b>clrscr ()</b>	This function is used to clear the output screen.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">2</span>
+					<b>getch ()	</b>It reads character from keyboard<br>
+					<span class="w3-badge w3-green w3-padding-smallest">3</span>
+					<b>getche ()</b>	It reads character from keyboard and echoes to o/p screen<br>
+					<span class="w3-badge w3-green w3-padding-smallest">4</span>
+					<b>textcolor ()	</b>This function is used to change the text color<br>
+					<span class="w3-badge w3-green w3-padding-smallest">5</span>
+					<b>textbackground ()</b>	This function is used to change text background<br>
+
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">string.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<span class="w3-badge w3-green w3-padding-smallest">1</span>
+					<b>strcat ()</b>	Concatenates str2 at the end of str1<br>
+					<span class="w3-badge w3-green w3-padding-smallest">2</span>
+					<b>strncat ()</b>	Appends a portion of string to another<br>
+					<span class="w3-badge w3-green w3-padding-smallest">3</span>
+					<b>strcpy ()</b>	Copies str2 into str1<br>
+					<span class="w3-badge w3-green w3-padding-smallest">4</span>
+					<b>strncpy ()</b>	Copies given number of characters of one string to another<br>
+					<span class="w3-badge w3-green w3-padding-smallest">5</span>
+					<b>strlen ()</b>	Gives the length of str1<br>
+					<span class="w3-badge w3-green w3-padding-smallest">6</span>
+					<b>strcmp ()</b>	Returns 0 if str1 is same as str2. Returns <0 if strl < str2. Returns >0 if str1 > str2<br>
+					<span class="w3-badge w3-green w3-padding-smallest">7</span>
+					<b>strcmpi ()</b>	Same as strcmp() function. But, this function negotiates case.  “A” and “a” are treated as same.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">8</span>
+					<b>strchr ()</b>	Returns pointer to first occurrence of char in str1<br>
+					<span class="w3-badge w3-green w3-padding-smallest">9</span>
+					<b>strrchr ()</b>	last occurrence of given character in a string is found<br>
+					<span class="w3-badge w3-green w3-padding-smallest">10</span>
+					<b>strstr ()</b>	Returns pointer to first occurrence of str2 in str1<br>
+					<span class="w3-badge w3-green w3-padding-smallest">11</span>
+					<b>strrstr ()</b>	Returns pointer to last occurrence of str2 in str1<br>
+					<span class="w3-badge w3-green w3-padding-smallest">12</span>
+					<b>strdup ()</b>	Duplicates the string<br>
+					<span class="w3-badge w3-green w3-padding-smallest">13</span>
+					<b>strlwr ()</b>	Converts string to lowercase<br>
+					<span class="w3-badge w3-green w3-padding-smallest">14</span>
+					<b>strupr ()</b>	Converts string to uppercase<br>
+					<span class="w3-badge w3-green w3-padding-smallest">15</span>
+					<b>strrev ()</b>	Reverses the given string<br>
+					<span class="w3-badge w3-green w3-padding-smallest">16</span>
+					<b>strset ()</b>	Sets all character in a string to given character<br>
+					<span class="w3-badge w3-green w3-padding-smallest">17</span>
+					<b>strnset ()</b>	It sets the portion of characters in a string to given character<br>
+					<span class="w3-badge w3-green w3-padding-smallest">18</span>
+					<b>strtok ()</b>	Tokenizing given string using delimiter<br>
+					<span class="w3-badge w3-green w3-padding-smallest">19</span>
+					<b>memset ()</b>	It is used to initialize a specified number of bytes to null or any other value in the buffer<br>
+					<span class="w3-badge w3-green w3-padding-smallest">20</span>
+					<b>memcpy ()</b>	It is used to copy a specified number of bytes from one memory to another<br>
+					<span class="w3-badge w3-green w3-padding-smallest">21</span>
+					<b>memmove ()</b>	It is used to copy a specified number of bytes from one memory to another or to overlap on same memory.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">22</span>
+					<b>memcmp ()</b>	It is used to compare specified number of characters from two buffers<br>
+					<span class="w3-badge w3-green w3-padding-smallest">23</span>
+					<b>memicmp ()</b>	It is used to compare specified number of characters from two buffers  regardless of the case of the characters<br>
+					<span class="w3-badge w3-green w3-padding-smallest">24</span>
+					<b>memchr ()</b>	It is used to locate the first occurrence of the character in the specified string<br>
+
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">stdlib.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<span class="w3-badge w3-green w3-padding-smallest">1</span>
+					<b>malloc ()</b>	This function is used to allocate space in memory during the execution of the program.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">2</span>
+					<b>calloc ()</b>	This function is also like malloc () function. But calloc () initializes the allocated memory to zero. But, malloc() doesn’t<br>
+					<span class="w3-badge w3-green w3-padding-smallest">3</span>
+					<b>realloc ()</b>	This function modifies the allocated memory size by malloc () and calloc ()functions to new size<br>
+					<span class="w3-badge w3-green w3-padding-smallest">4</span>
+					<b>free ()</b>	This function frees the allocated memory by malloc (), calloc (), realloc () functions and returns the memory to the system.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">5</span>
+					<b>abs ()</b>	This function returns the absolute value of an integer . The absolute value of anumber is always positive. Only integer values are supported in C.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">6</span>
+					<b>div ()</b>	This function performs division operation<br>
+					<span class="w3-badge w3-green w3-padding-smallest">7</span>
+					<b>abort ()</b>	It terminates the C program<br>
+					<span class="w3-badge w3-green w3-padding-smallest">8</span>
+					<b>exit ()</b>	This function terminates the program and does not return any value<br>
+					<span class="w3-badge w3-green w3-padding-smallest">9</span>
+					<b>system ()</b>	This function is used to execute commands outside the C program.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">10</span>
+					<b>atoi ()</b>	Converts string to int<br>
+					<span class="w3-badge w3-green w3-padding-smallest">11</span>
+					<b>atol ()</b>	Converts string to long<br>
+					<span class="w3-badge w3-green w3-padding-smallest">12</span>
+					<b>atof ()</b>	Converts string to float<br>
+					<span class="w3-badge w3-green w3-padding-smallest">13</span>
+					<b>strtod ()</b>	Converts string to double<br>
+					<span class="w3-badge w3-green w3-padding-smallest">14</span>
+					<b>strtol ()</b>	Converts string to long<br>
+					<span class="w3-badge w3-green w3-padding-smallest">15</span>
+					<b>getenv ()</b>	This function gets the current value of the environment variable<br>
+					<span class="w3-badge w3-green w3-padding-smallest">16</span>
+					<b>setenv ()</b>	This function sets the value for environment variable<br>
+					<span class="w3-badge w3-green w3-padding-smallest">17</span>
+					<b>putenv ()</b>	This function modifies the value for environment variable<br>
+					<span class="w3-badge w3-green w3-padding-smallest">18</span>
+					<b>perror ()	</b>This function displays most recent error that happened during library function call.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">19</span>
+					<b>rand ()</b>	This function returns the random integer numbers<br>
+					<span class="w3-badge w3-green w3-padding-smallest">20</span>
+					<b>delay ()</b>	This function Suspends the execution of the program for particular time<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">math.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<span class="w3-badge w3-green w3-padding-smallest">1</span>
+					<b>floor ()</b>	This function returns the nearest integer which is less than or equal to the argument passed to this function.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">2</span>
+					<b>round ()</b>	This function returns the nearest integer value of the float/double/long double argument passed to this function. If decimal value is from “.1 to .5”, it returns integer value less than the argument. If decimal value is from “.6 to .9”, it returns the integer value greater than the argument.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">3</span>
+					<b>ceil ()</b> This function returns nearest integer value which is greater than or equal to the argument passed to this function.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">4</span>
+					<b>sin ()</b>	This function is used to calculate sine value.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">5</span>
+					<b>cos ()</b>	This function is used to calculate cosine.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">6</span>
+					<b>cosh ()</b>	This function is used to calculate hyperbolic cosine.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">7</span>
+					<b>exp ()</b>	This function is used to calculate the exponential “e” to the xth power.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">8</span>
+					<b>tan ()</b>	This function is used to calculate tangent.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">9</span>
+					<b>tanh ()</b>	This function is used to calculate hyperbolic tangent.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">10</span>
+					<b>sinh ()</b>	This function is used to calculate hyperbolic sine.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">11</span>
+					<b>log ()</b>	This function is used to calculates natural logarithm.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">12</span>
+					<b>log10 ()</b>	This function is used to calculates base 10 logarithm.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">13</span>
+					<b>sqrt ()</b>	This function is used to find square root of the argument passed to this function.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">14</span>
+					<b>pow ()</b>	This is used to find the power of the given number.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">15</span>
+					<b>trunc ()</b>	This function truncates the decimal value from floating point value and returns integer value.
+
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">time.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<span class="w3-badge w3-green w3-padding-smallest">1</span>
+					<b>setdate ()</b>	This function used to modify the system date<br>
+					<span class="w3-badge w3-green w3-padding-smallest">2</span>
+					<b>getdate ()</b>	This function is used to get the CPU time<br>
+					<span class="w3-badge w3-green w3-padding-smallest">3</span>
+					<b>clock ()</b>	This function is used to get current system time<br>
+					<span class="w3-badge w3-green w3-padding-smallest">4</span>
+					<b>time ()</b>	This function is used to get current system time as structure<br>
+					<span class="w3-badge w3-green w3-padding-smallest">5</span>
+					<b>difftime ()</b>	This function is used to get the difference between two given times<br>
+					<span class="w3-badge w3-green w3-padding-smallest">6</span>
+					<b>strftime ()</b>	This function is used to modify the actual time format<br>
+					<span class="w3-badge w3-green w3-padding-smallest">7</span>
+					<b>mktime ()</b>	This function interprets tm structure as calendar time<br>
+					<span class="w3-badge w3-green w3-padding-smallest">8</span>
+					<b>localtime ()</b>	This function shares the tm structure that contains date and time informations<br>
+					<span class="w3-badge w3-green w3-padding-smallest">9</span>
+					<b>gmtime ()</b>	This function shares the tm structure that contains date and time informations<br>
+					<span class="w3-badge w3-green w3-padding-smallest">10</span>
+					<b>ctime ()</b>	This function is used to return string that contains date and time informations<br>
+					<span class="w3-badge w3-green w3-padding-smallest">11</span>
+					<b>asctime ()</b>	Tm structure contents are interpreted by this function as calendar time. This time is converted into string.
+
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">ctype.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<span class="w3-badge w3-green w3-padding-smallest">1</span>
+					<b>isalpha ()</b>	checks whether character is alphabetic<br>
+					<span class="w3-badge w3-green w3-padding-smallest">2</span>
+					<b>isdigit ()</b>	checks whether character is digit<br>
+					<span class="w3-badge w3-green w3-padding-smallest">3</span>
+					<b>isalnum ()</b>	Checks whether character is alphanumeric<br>
+					<span class="w3-badge w3-green w3-padding-smallest">4</span>
+					<b>isspace ()</b>	Checks whether character is space<br>
+					<span class="w3-badge w3-green w3-padding-smallest">5</span>
+					<b>islower ()</b>	Checks whether character is lower case<br>
+					<span class="w3-badge w3-green w3-padding-smallest">6</span>
+					<b>isupper ()</b>	Checks whether character is upper case<br>
+					<span class="w3-badge w3-green w3-padding-smallest">7</span>
+					<b>isxdigit ()</b>	Checks whether character is hexadecimal<br>
+					<span class="w3-badge w3-green w3-padding-smallest">8</span>
+					<b>iscntrl ()</b>	Checks whether character is a control character<br>
+					<span class="w3-badge w3-green w3-padding-smallest">9</span>
+					<b>isprint ()</b>	Checks whether character is a printable character<br>
+					<span class="w3-badge w3-green w3-padding-smallest">10</span>
+					<b>ispunct ()</b>	Checks whether character is a punctuation<br>
+					<span class="w3-badge w3-green w3-padding-smallest">11</span>
+					<b>isgraph ()</b>	Checks whether character is a graphical character<br>
+					<span class="w3-badge w3-green w3-padding-smallest">12</span>
+					<b>tolower ()</b>	Checks whether character is alphabetic & converts to lower case<br>
+					<span class="w3-badge w3-green w3-padding-smallest">13</span>
+					<b>toupper ()</b>	Checks whether character is alphabetic & converts to upper case
+
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Other Library </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<span class="w3-badge w3-green w3-padding-smallest">1</span>
+					<b>stdarg.h	va_start()</b><br>
+					<span class="w3-badge w3-green w3-padding-smallest">2</span>
+					<b>va_arg ()</b><br>
+					<span class="w3-badge w3-green w3-padding-smallest">3</span>
+					<b>va_end ()</b><br>
+					<span class="w3-badge w3-green w3-padding-smallest">4</span>
+					<b>signal.h	signal ()</b><br>
+					<span class="w3-badge w3-green w3-padding-smallest">5</span>
+					<b>raise ()</b><br>
+					<span class="w3-badge w3-green w3-padding-smallest">6</span>
+					<b>setjmp.h	setjmp ()</b><br>
+					<span class="w3-badge w3-green w3-padding-smallest">7</span>
+					<b>longjmp ()</b><br>
+					<span class="w3-badge w3-green w3-padding-smallest">8</span>
+					<b>locale.h	setlocale()</b><br>
+					<span class="w3-badge w3-green w3-padding-smallest">9</span>
+					<b>localeconv ()</b><br>
+					<span class="w3-badge w3-green w3-padding-smallest">10</span>
+					<b>errno.h	errno ()</b><br>
+					<span class="w3-badge w3-green w3-padding-smallest">11</span>
+					<b>assert.h	assert ()</b><br>
+					<span class="w3-badge w3-green w3-padding-smallest">12</span>
+					<b>va_start()</b>	This function indicates the start process of variable length argument list in a program<br>
+					<span class="w3-badge w3-green w3-padding-smallest">13</span>
+					<b>va_arg()</b>	This function is used to fetch the arguments from variable length argument list<br>
+					<span class="w3-badge w3-green w3-padding-smallest">14</span>
+					<b>va_end()</b>	This function indicates the end process of variable length argument list in a program<br>
+					<span class="w3-badge w3-green w3-padding-smallest">15</span>
+					<b>signal()</b>	It is used to install signal handler<br>
+					<span class="w3-badge w3-green w3-padding-smallest">16</span>
+					<b>raise ()</b>	It is used to raise signal in a C program<br>
+					<span class="w3-badge w3-green w3-padding-smallest">17</span>
+					<b>setjmp ()</b>This function prepares to use longjmp() function<br>
+					<span class="w3-badge w3-green w3-padding-smallest">18</span>
+					<b>longjmp ()</b>	It is used for non local jump<br>
+					<span class="w3-badge w3-green w3-padding-smallest">19</span>
+					<b>setlocale ()</b>	It sets locale()<br>
+					<span class="w3-badge w3-green w3-padding-smallest">20</span>
+					<b>localeconv ()</b>	It gets locale conventions<br>
+					<span class="w3-badge w3-green w3-padding-smallest">21</span>
+					<b>errno ()	</b>This function sets errno value to 0 at the beginning of the program. This value is modified to other than 0 when an error occurs while any function call.<br>
+					<span class="w3-badge w3-green w3-padding-smallest">22</span>
+					<b>assert ()</b>	This function gets an integer as paramenter. If this paramenter is 0, writes message
+					to stderr. Then, terminates the program. If this paramenter is non 0, it does nothing.
+
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">stdlib.h </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">stdlib.h </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">stdlib.h </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+
+		<div id="footer">
+			<center>
+				<p class="copyright-lable"> &#169; 2020 - 2020 </p>
+			</center>
+		</div>
+	</div>
+
+
+	<script>
+	var acc = document.getElementsByClassName("interest-description-btns");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].onclick = function() {
+	    this.classList.toggle("active");
+	    var panel = this.nextElementSibling;
+	    if (panel.style.maxHeight){
+	      panel.style.maxHeight = null;
+	    } else {
+	      panel.style.maxHeight = panel.scrollHeight + "px";
+	    }
+	  }
+	}
+	</script>
+
+</body>
+</html>
