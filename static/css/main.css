@@ -154,7 +154,14 @@ li a:hover {background-color: #1E90FF;}
 
 
 /* ============================= INTRESETS PAGE ================ */
-
+.gtk-label-titles
+{
+    padding: 8px 8px 8px 8px;
+    font-size: 18px;
+    font-family:Times New Roman Times, serif;
+    color:white;
+    font-family:Times New Roman Times, serif;
+}
 .interest-description-btns
     {
         background-color:#708090;

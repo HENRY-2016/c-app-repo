@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>C-Prog | Gtk</title>
+<meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1">
+<!-- <script src="js/main.js"></script> -->
+<link rel="stylesheet" type="text/css" href="static/css/w3.css">
+<link rel="stylesheet" type="text/css" href="static/css/main.css">
+
+</head>
+<body id="main_body" ><br>
+	<div id="main_div_content">
+		<ul>
+			<li><a href="index.html"> Hom</a></li>
+			<li><a href="functions.html"> Fun</a></li>
+			<li><a href="gtk.html"> Gtk</a></li>
+			<li><a href="source.html"> Src</a></li>
+		</ul>
+		<br><br>
+
+		<center><label class="gtk-label-titles">Widgets and Objects</label></center>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Printing </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>GtkPrintOperation — </b>High-level Printing API<br>
+					<b>GtkPrintContext — </b>Encapsulates context for drawing pages<br>
+					<b>GtkPrintSettings — </b>Stores print settings<br>
+					<b>GtkPageSetup — </b>Stores page setup information<br>
+					<b>GtkPaperSize — </b>Support for named paper sizes<br>
+					<b>GtkPrinter — </b>Represents a printer<br>
+					<b>GtkPrintJob — </b>Represents a print job<br>
+					<b>GtkPrintUnixDialog —</b> A print dialog<br>
+					<b>GtkPageSetupUnixDialog — </b>A page setup dialog<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Scrolling</button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>GtkScrollbar — </b>A Scrollbar<br>
+					<b>GtkScrolledWindow — </b>Adds scrollbars to its child widget<br>
+					<b>GtkScrollable — </b>An interface for scrollable widgets<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Windows </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+			        <b>GtkDialog —</b> Create popup windows<br>
+					<b>GtkWindow —</b> Toplevel which can contain other widgets<br>
+			        <b>GtkMessageDialog —</b> A convenient message window<br>
+			        <b>GtkAboutDialog —</b> Display information about an application<br>
+			        <b>GtkAssistant —</b> A widget used to guide users through multi-step operations<br>
+			        <b>GtkInvisible  —</b>A widget which is not displayed<br>
+			        <b>GtkOffscreenWindow —</b> A toplevel to manage offscreen rendering of child widgets<br>
+			        <b>GtkWindowGroup  —</b>Limit the effect of grabs<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Ornaments </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>GtkFrame — </b>A bin with a decorative frame and optional label<br>
+					<b>GtkSeparator — </b>A separator widget<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Deprecated</button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+			        <b>GtkSymbolicColor — </b>Symbolic colors<br>
+			        <b>GtkGradient — </b>Gradients<br>
+			        <b>Resource Files — </b>Deprecated routines for handling resource files<br>
+					<b>GtkStyle — </b>Deprecated object that holds style information for widgets<br>
+					<b>GtkHScale — </b>A horizontal slider widget for selecting a value from a range<br>
+			        <b>GtkVScale — </b>A vertical slider widget for selecting a value from a range<br>
+			        <b>GtkTearoffMenuItem — </b>A menu item used to tear off and reattach its menu<br>
+			        <b>GtkColorSelection — </b>Deprecated widget used to select a color<br>
+			        <b>GtkColorSelectionDialog — </b>Deprecated dialog box for selecting a color<br>
+			        <b>GtkHSV — </b>A “color wheel” widget<br>
+			        <b>GtkFontSelection — </b>Deprecated widget for selecting fonts<br>
+			        <b>GtkFontSelectionDialog — </b>Deprecated dialog box for selecting fonts<br>
+			        <b>GtkHBox — </b>A horizontal container box<br>
+			        <b>GtkVBox — </b>A vertical container box<br>
+			        <b>GtkHButtonBox — </b>A container for arranging buttons horizontally<br>
+			        <b>GtkVButtonBox — </b>A container for arranging buttons vertically<br>
+			        <b>GtkHPaned — </b>A container with two panes arranged horizontally<br>
+			        <b>GtkVPaned — </b>A container with two panes arranged vertically<br>
+			        <b>GtkTable — </b>Pack widgets in regular patterns<br>
+			        <b>GtkHSeparator — </b>A horizontal separator<br>
+			        <b>GtkVSeparator — </b>A vertical separator<br>
+			        <b>GtkHScrollbar — </b>A horizontal scrollbar<br>
+			        <b>GtkVScrollbar — </b>A vertical scrollbar<br>
+			        <b>GtkUIManager — </b>Constructing menus and toolbars from an XML description<br>
+			        <b>GtkActionGroup — </b>A group of actions<br>
+			        <b>GtkAction — </b>A deprecated action which can be triggered by a menu or toolbar item<br>
+			        <b>GtkToggleAction — </b>An action which can be toggled between two states<br>
+			        <b>GtkRecentAction — </b>An action of which represents a list of recently used files<br>
+					<b>GtkRadioAction — </b>An action of which only one in a group can be active<br>
+			        <b>GtkActivatable — </b>An interface for activatable widgets<br>
+			        <b>GtkImageMenuItem — </b>A deprecated widget for a menu item with an icon<br>
+			        <b>GtkMisc — </b>Base class for widgets with alignments and padding<br>
+			        <b>Stock Items — </b>Prebuilt common menu/toolbar items and corresponding icons<br>
+			        <b>Themeable Stock Images — </b>Manipulating stock icons<br>
+			        <b>GtkNumerableIcon — </b>A GIcon that allows numbered emblems<br>
+			        <b>GtkArrow — </b>Displays an arrow<br>
+			        <b>GtkStatusIcon — </b>Display an icon in the system tray<br>
+			        <b>GtkThemingEngine — </b>Theming renderers<br>
+			        <b>GtkAlignment — </b>A widget which controls the alignment and size of its child<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Display Widgets </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>GtkLabel —</b> A widget that displays a small to medium amount of text<br>
+			        <b>GtkImage — </b>A widget displaying an image<br>
+			        <b>GtkSpinner — </b>Show a spinner animation<br>
+			        <b>GtkInfoBar — </b>Report important messages to the user<br>
+			        <b>GtkProgressBar — </b>A widget which indicates progress visually<br>
+			        <b>GtkLevelBar — </b>A bar that can used as a level indicator<br>
+			        <b>GtkStatusbar — </b>Report messages of minor importance to the user<br>
+			        <b>GtkAccelLabel — </b>A label which displays an accelerator key on the right of the text<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Layout Containers </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>GtkBox —</b> A container for packing widgets in a single row or column<br>
+					<b>GtkGrid — </b>Pack widgets in rows and columns<br>
+					<b>GtkRevealer — </b>Hide and show with animation<br>
+					<b>GtkListBox — </b>A list container<br>
+					<b>GtkFlowBox — </b>A container that allows reflowing its children<br>
+					<b>GtkStack — </b>A stacking container<br>
+					<b>GtkStackSwitcher — </b>A controller for GtkStack<br>
+					<b>GtkStackSidebar — </b>An automatic sidebar widget<br>
+					<b>GtkActionBar — </b>A full width bar for presenting contextual actions<br>
+					<b>GtkHeaderBar — </b>A box with a centered child<br>
+					<b>GtkOverlay — </b>A container which overlays widgets on top of each other<br>
+					<b>GtkButtonBox — </b>A container for arranging buttons<br>
+					<b>GtkPaned — </b>A widget with two adjustable panes<br>
+					<b>GtkLayout — </b>Infinite scrollable area containing child widgets and/or custom drawing<br>
+					<b>GtkNotebook — </b>A tabbed notebook container<br>
+					<b>GtkExpander — </b>A container which can hide its child<br>
+					<b>GtkOrientable — </b>An interface for flippable widgets<br>
+					<b>GtkAspectFrame — </b>A frame that constrains its child to a particular aspect ratio<br>
+					<b>GtkFixed — </b>A container which allows you to position widgets at fixed coordinates<br>
+
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Buttons and Toggles </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>GtkButton — </b>A widget that emits a signal when clicked on<br>
+			        <b>GtkCheckButton — </b>Create widgets with a discrete toggle button<br>
+			        <b>GtkRadioButton — </b>A choice from multiple check buttons<br>
+			        <b>GtkToggleButton — </b>Create buttons which retain their state<br>
+			        <b>GtkLinkButton — </b>Create buttons bound to a URL<br>
+			        <b>GtkMenuButton — </b>A widget that shows a popup when clicked on<br>
+			        <b>GtkSwitch — </b>A “light switch” style toggle<br>
+			        <b>GtkScaleButton — </b>A button which pops up a scale<br>
+			        <b>GtkVolumeButton — </b>A button which pops up a volume control<br>
+			        <b>GtkLockButton — </b>A widget to unlock or lock privileged operations<br>
+			        <b>GtkModelButton — </b>A button that uses a GAction as model<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Numeric and Text Data Entry </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+			        <b>GtkEntry — </b>A single line text entry field<br>
+			        <b>GtkEntryBuffer — </b>Text buffer for GtkEntry<br>
+			        <b>GtkEntryCompletion — </b>Completion functionality for GtkEntry<br>
+			        <b>GtkScale — </b>A slider widget for selecting a value from a range<br>
+			        <b>GtkSpinButton — </b>Retrieve an integer or floating-point number from the user<br>
+			        <b>GtkSearchEntry — </b>An entry which shows a search icon<br>
+			        <b>GtkSearchBar — </b>A toolbar to integrate a search entry with<br>
+			        <b>GtkEditable — </b>Interface for text-editing widgets<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Multiline Text Editor </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>Text Widget Overview — </b>Overview of GtkTextBuffer, GtkTextView, and friends <br>
+					<b>GtkTextIter — </b>Text buffer iterator<br>
+					<b>GtkTextMark — </b>A position in the buffer preserved across buffer modifications<br>
+					<b>GtkTextBuffer — </b>Stores attributed text for display in a GtkTextView<br>
+					<b>GtkTextTag — </b>A tag that can be applied to text in a GtkTextBuffer<br>
+					<b>GtkTextTagTable — </b>Collection of tags that can be used together<br>
+					<b>GtkTextView — </b>Widget that displays a GtkTextBuffer<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Tree, List and Icon Grid Widgets </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>Tree and List Widget Overview — </b>Overview of GtkTreeModel, GtkTreeView, and friends<br>
+					<b>GtkTreeModel — </b>The tree interface used by GtkTreeView<br>
+					<b>GtkTreeSelection — </b>The selection object for GtkTreeView<br>
+					<b>GtkTreeViewColumn — </b>A visible column in a GtkTreeView widget<br>
+					<b>GtkTreeView — </b>A widget for displaying both trees and lists<br>
+					<b>GtkTreeView drag-and-drop — </b>Interfaces for drag-and-drop support in GtkTreeView<br>
+					<b>GtkCellView — </b>A widget displaying a single row of a GtkTreeModel<br>
+					<b>GtkIconView — </b>A widget which displays a list of icons in a grid<br>
+					<b>GtkTreeSortable — </b>The interface for sortable models used by GtkTreeView<br>
+					<b>GtkTreeModelSort — </b>A GtkTreeModel which makes an underlying tree model sortable<br>
+					<b>GtkTreeModelFilter — </b>A GtkTreeModel which hides parts of an underlying tree model<br>
+					<b>GtkCellLayout — </b>An interface for packing cells<br>
+					<b>GtkCellArea — </b>An abstract class for laying out GtkCellRenderers<br>
+					<b>GtkCellAreaBox — </b>A cell area that renders GtkCellRenderers into a row or a column<br>
+					<b>GtkCellAreaContext — </b>Stores geometrical information for a series of rows in a GtkCellArea<br>
+					<b>GtkCellRenderer — </b>An object for rendering a single cell<br>
+					<b>GtkCellEditable — </b>Interface for widgets that can be used for editing cells<br>
+					<b>GtkCellRendererAccel — </b>Renders a keyboard accelerator in a cell<br>
+					<b>GtkCellRendererCombo — </b>Renders a combobox in a cell<br>
+					<b>GtkCellRendererPixbuf — </b>Renders a pixbuf in a cell<br>
+					<b>GtkCellRendererProgress — </b>Renders numbers as progress bars<br>
+					<b>GtkCellRendererSpin — </b>Renders a spin button in a cell<br>
+					<b>GtkCellRendererText — </b>Renders text in a cell<br>
+					<b>GtkCellRendererToggle — </b>Renders a toggle button in a cell<br>
+					<b>GtkCellRendererSpinner — </b>Renders a spinning animation in a cell<br>
+					<b>GtkListStore — </b>A list-like data structure that can be used with the GtkTreeView<br>
+					<b>GtkTreeStore — </b>A tree-like data structure that can be used with the GtkTreeView<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Menus, Combo Box, Toolbar </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+			        <b>GtkComboBox — </b>A widget used to choose from a list of items<br>
+			        <b>GtkComboBoxText — </b>A simple, text-only combo box<br>
+			        <b>GtkMenu — </b>A menu widget<br>
+			        <b>GtkMenuBar — </b>A subclass of GtkMenuShell which holds GtkMenuItem widgets<br>
+			        <b>GtkMenuItem — </b>The widget used for item in menus<br>
+			        <b>GtkRadioMenuItem — </b>A choice from multiple check menu items<br>
+			        <b>GtkCheckMenuItem — </b>A menu item with a check box<br>
+			        <b>GtkSeparatorMenuItem — </b>A separator used in menus<br>
+			        <b>GtkToolShell — </b>Interface for containers containing GtkToolItem widgets<br>
+			        <b>GtkToolbar — </b>Create bars of buttons and other widgets<br>
+			        <b>GtkToolItem — </b>The base class of widgets that can be added to GtkToolShell<br>
+			        <b>GtkToolPalette — </b>A tool palette with categories<br>
+			        <b>GtkToolItemGroup — </b>A sub container used in a tool palette<br>
+			        <b>GtkSeparatorToolItem — </b>A toolbar item that separates groups of other toolbar items<br>
+			        <b>GtkToolButton — </b>A GtkToolItem subclass that displays buttons<br>
+			        <b>GtkMenuToolButton — </b>A GtkToolItem containing a button with an additional dropdown menu<br>
+			        <b>GtkToggleToolButton — </b>A GtkToolItem containing a toggle button<br>
+			        <b>GtkRadioToolButton — </b>A toolbar item that contains a radio button<br>
+			        <b>GtkPopover — </b>Context dependent bubbles<br>
+			        <b>GtkPopoverMenu — </b>Popovers to use as menus<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Selector Widgets and Dialogs </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>GtkColorChooser — </b>Interface implemented by widgets for choosing colors<br>
+					<b>GtkColorButton — </b>A button to launch a color selection dialog<br>
+					<b>GtkColorChooserDialog — </b>A dialog for choosing colors<br>
+					<b>GtkColorChooserWidget — </b>A widget for choosing colors<br>
+					<b>GtkFileChooser — </b>File chooser interface used by GtkFileChooserWidget and GtkFileChooserDialog<br>
+					<b>GtkFileChooserNative — </b>A native file chooser dialog, suitable for “File/Open” or “File/Save” commands<br>
+					<b>GtkFileChooserButton — </b>A button to launch a file selection dialog<br>
+					<b>GtkFileChooserWidget — </b>A file chooser widget<br>
+					<b>GtkFileChooserDialog — </b>A file chooser dialog, suitable for “File/Open” or “File/Save” commands<br>
+					<b>GtkFileFilter — </b>A filter for selecting a file subset<br>
+					<b>GtkFontButton — </b>A button to launch a font chooser dialog<br>
+					<b>GtkFontChooser — </b>Interface implemented by widgets displaying fonts<br>
+					<b>GtkFontChooserWidget — </b>A widget for selecting fonts<br>
+					<b>GtkFontChooserDialog — </b>A dialog for selecting fonts<br>
+					<b>GtkPlacesSidebar — </b>Sidebar that displays frequently-used places in the file system<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Shortcuts Overview </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>GtkShortcutsWindow — </b>Toplevel which shows help for shortcuts<br>
+					<b>GtkShortcutsSection — </b>Represents an application mode in a GtkShortcutsWindow<br>
+					<b>GtkShortcutsGroup — </b>Represents a group of shortcuts in a GtkShortcutsWindow<br>
+					<b>GtkShortcutsShortcut — </b>Represents a keyboard shortcut in a GtkShortcutsWindow<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Miscellaneous </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>GtkAdjustment — </b>A representation of an adjustable bounded value<br>
+			        <b>GtkCalendar — </b>Displays a calendar and allows the user to select a date<br>
+			        <b>GtkDrawingArea — </b>A widget for custom user interface elements<br>
+			        <b>GtkGLArea — </b>A widget for custom drawing with OpenGL<br>
+			        <b>GtkEventBox — </b>A widget used to catch events for widgets which do not have their own window<br>
+			        <b>GtkHandleBox — </b>A widget for detachable window portions<br>
+			        <b>GtkIMContextSimple — </b>An input method context supporting table-based input methods<br>
+			        <b>GtkSizeGroup — </b>Grouping widgets so they request the same size<br>
+					<b>GtkIMMulticontext — </b>An input method context supporting multiple, loadable input methods<br>
+			        <b>GtkTooltip — </b>Add tips to your widgets<br>
+			        <b>GtkViewport — </b>An adapter which makes widgets scrollable<br>
+			        <b>GtkAccessible — </b>Accessibility support for widgets<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Abstract Base Classes </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+			        <b>GtkWidget — </b>Base class for all widgets<br>
+			        <b>GtkContainer — </b>Base class for widgets which contain other widgets<br>
+			        <b>GtkBin — </b>A container with just one child<br>
+			        <b>GtkMenuShell — </b>A base class for menu objects<br>
+			        <b>GtkRange — </b>Base class for widgets which visualize an adjustment<br>
+			        <b>GtkIMContext — </b>Base class for input method contexts<br>
+			        <b>GtkNativeDialog — </b>Integrate with native dialogs<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Cross-process Embedding </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>GtkPlug — </b>Toplevel for embedding into other processes<br>
+			        <b>GtkSocket — </b>Container for widgets from other processes<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Recently Used Documents </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>GtkRecentManager — </b>Managing recently used files<br>
+			        <b>GtkRecentChooser — </b>Interface implemented by widgets displaying recently used files<br>
+			        <b>GtkRecentChooserDialog — </b>Displays recently used files in a dialog<br>
+			        <b>GtkRecentChooserMenu — </b>Displays recently used files in a menu<br>
+			        <b>GtkRecentChooserWidget — </b>Displays recently used files<br>
+			        <b>GtkRecentFilter — </b>A filter for selecting a subset of recently used files<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<button class="interest-description-btns">Gestures and event handling </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+			        <b>GtkEventController — </b>Self-contained handler of series of events<br>
+			        <b>GtkEventControllerKey — </b>Event controller for key events<br>
+			        <b>GtkEventControllerMotion — </b>Event controller for motion events<br>
+					<b>GtkEventControllerScroll — </b>Event controller for scroll events<br>
+			        <b>GtkGesture — </b>Base class for gestures<br>
+			        <b>GtkGestureSingle — </b>Base class for mouse/single-touch gestures<br>
+			        <b>GtkGestureDrag — </b>Drag gesture<br>
+			        <b>GtkGestureLongPress —</b> "Press and Hold" gesture<br>
+			        <b>GtkGestureMultiPress — </b>Multipress gesture<br>
+			        <b>GtkGesturePan — </b>Pan gesture<br>
+			        <b>GtkGestureSwipe — </b>Swipe gesture<br>
+			        <b>GtkGestureRotate — </b>Rotate gesture<br>
+			        <b>GtkGestureZoom — </b>Zoom gesture<br>
+					<b>GtkGestureStylus — </b>Gesture for stylus input<br>
+					<b>GtkPadController — </b>Controller for drawing tablet pads<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<center><label class="gtk-label-titles"> Theming</label></center>
+		<button class="interest-description-btns">Theming  </button>
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+					<b>GTK+ CSS Overview — </b>Overview of CSS in GTK+<br>
+				    <b>GTK+ CSS Properties — </b>CSS Properties in GTK+<br>
+				    <b>GtkStyleContext — </b>Rendering UI elements<br>
+				    <b>GtkCssProvider — </b>CSS-like styling for widgets<br>
+				    <b>GtkStyleProvider — </b>Interface to provide style information to GtkStyleContext<br>
+				    <b>GtkStyleProperties — </b>Store for style property information<br>
+				    <b>GtkWidgetPath — </b>Widget path abstraction<br>
+				    <b>GtkIconTheme — </b>Looking up icons by name<br>
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- <button class="interest-description-btns">String Character Functions </button> -->
+		<div class="description-contents"><br>
+			<div id="description-content-div">
+				<p class="main-text-body-pargraphs">
+				</p><br>
+			</div><!--==== END OF CONTENT DIV ==== -->
+		</div>
+
+
+	</div>
+
+		<div id="footer">
+			<center>
+				<p class="copyright-lable"> &#169; 2020 - 2020 </p>
+			</center>
+		</div>
+	</div>
+
+
+	<script>
+	var acc = document.getElementsByClassName("interest-description-btns");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].onclick = function() {
+	    this.classList.toggle("active");
+	    var panel = this.nextElementSibling;
+	    if (panel.style.maxHeight){
+	      panel.style.maxHeight = null;
+	    } else {
+	      panel.style.maxHeight = panel.scrollHeight + "px";
+	    }
+	  }
+	}
+	</script>
+
+</body>
+</html>
